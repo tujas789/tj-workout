@@ -7,8 +7,9 @@
 - **scriptId:** `1TD8fMzsNHlp9zZBj1CrC8XopZJUbAHsBBAWd9RHG0O0HFMwfDwKJjCWJ` (container-bound)
 - **Web App `/exec`:**
   `https://script.google.com/macros/s/AKfycbzcxFZYCXG2RNeqG6MteHEdPhQr5W7HU0JBW7HXGqS8T_9jVhq3065cipCOMV8Zkj6Z/exec`
-  Execute as: **Me** · Access: **Anyone** · deploy ล่าสุด **v7 (2026-08-25)**
-  v7 = เพิ่ม `?action=progress` · `seedProgram()` · `buildDashboard()`
+  Execute as: **Me** · Access: **Anyone** · deploy ล่าสุด **v8 (2026-08-25)**
+  v8 = **ถอด `?action=progress` ออก** (read API สาธารณะที่ตอบสรุปสุขภาพ — ดู `docs/SCOPE.md`)
+  + `seedProgram()` ไม่เขียนทับใบที่มีข้อมูลแล้ว · เหลือ action แค่ `ping` / `getProgram`
   ✅ Run ครบแล้วทั้ง `setup()` · `seedProgram()` (25 แถว) · `buildDashboard()`
   ⚠️ ทุกครั้งที่ deploy อัปเดตเลขเวอร์ชันบรรทัดนี้ให้ตรง (เช็คด้วย `clasp list-deployments`)
 
@@ -50,15 +51,15 @@ clasp open-script
 | ลำดับ | ฟังก์ชัน | ทำอะไร | รันซ้ำได้ไหม |
 |---|---|---|---|
 | 1 | `setup()` | เติมคอลัมน์ใหม่ `secs` `log` ในหัวตาราง Program | ได้ ไม่แตะข้อมูล |
-| 2 | `seedProgram()` | เติมท่า 25 แถวลงชีต Program | ⚠️ **ลบแถวเดิมก่อนเขียนใหม่** |
+| 2 | `seedProgram()` | เติมท่า 25 แถวลงชีต Program | ปลอดภัย — ถ้ามีแถวแล้วจะไม่ยอมเขียนทับ |
 | 3 | `buildDashboard()` | สร้างชีต `สรุป` + กราฟ 4 อัน | ได้ (ลบชีตเดิมแล้วสร้างใหม่) |
 
 เช็คผลที่ **Execution log** · แล้วทดสอบจากเบราว์เซอร์:
-`…/exec?action=getProgram` ต้องได้ 25 แถว · `…/exec?action=progress` ต้องได้ตัวเลขสรุป
+`…/exec?action=getProgram` ต้องได้ 25 แถว · `…/exec?action=progress` ต้องได้ `ไม่รู้จัก action`
 
-> ⚠️ ข้อ 2 รันครั้งเดียวตอนย้ายเข้าชีตพอ — **หลังจากนั้นชีตคือของจริง** แก้ท่าที่ชีตได้เลย
-> รันซ้ำเมื่อไหร่ ท่าที่แก้ในชีตหายหมด กลับไปเป็นฉบับใน `program.js`
-> (ตั้งใจให้เป็นทางกลับตอนแก้ชีตจนพัง — ถ้าจะรัน copy ชีตเก็บไว้ก่อน)
+> ข้อ 2 รันครั้งเดียวตอนย้ายเข้าชีตพอ — **หลังจากนั้นชีตคือของจริง** แก้ท่าที่ชีตได้เลย
+> รันซ้ำจะ throw ไม่เขียนทับให้ · อยากคืนค่าเป็นฉบับในโค้ดจริง ๆ ต้อง Run
+> `resetProgramFromCode()` ซึ่งลบท่าที่แก้ในชีตทิ้งหมด — copy ชีตเก็บไว้ก่อนรัน
 
 ### 🔓 เรื่องความปลอดภัย — รู้ไว้ก่อน
 ไม่มี auth/token/LockService โดยตั้งใจ (ผู้ใช้คนเดียว ไม่มี race) และ **URL `/exec` ฝังอยู่ใน

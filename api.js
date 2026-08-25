@@ -46,6 +46,7 @@ function setApiUrl(u) {
 
 /* คิวแถวที่ยังไม่ได้ sync — ทุกการบันทึกลงคิวก่อนเสมอ แล้วค่อยส่ง */
 API_URL = LS.get('apiUrl', '') || DEFAULT_API_URL; NO_SERVER = !API_URL;
+LS.removePrefix('progress');           // ฟีเจอร์ถูกถอดออก — เก็บกวาดแคชเก่าทิ้ง
 let QUEUE = LS.get('queue', []);
 const queueSave = () => LS.set('queue', QUEUE);
 
@@ -111,13 +112,26 @@ document.addEventListener('visibilitychange', () => { if (!document.hidden) sync
      (หลักการข้อ 1: ยิม/สนามแบดสัญญาณไม่ดี ห้ามให้เน็ตเป็นเงื่อนไขของการฝึก)      */
 let onProgramChange = () => {};   // app.js ตั้งเอง — api.js ไม่แตะ DOM
 
-function markProgram(src, at) { PROGRAM.source = src; PROGRAM.fetchedAt = at || ''; }
+/* สถานะโปรแกรม — การ์ดตั้งค่าเอาไปแสดงตรง ๆ ห้ามเดาเอาเอง (เคยบอกสาเหตุผิดมาแล้ว)
+   ที่มา: 'ชีต' · 'ชีต (แคชไว้)' · 'ไฟล์ในแอป'
+   sheet/code = เซสชันไหนมาจากไหน · skipped = แถวที่ชีตมีแต่ใช้ไม่ได้            */
+const PROG_STATE = { src: 'ไฟล์ในแอป', at: '', sheet: [], code: [], skipped: [], tried: false };
+
+function markProgram_(src, at, res) {
+  PROG_STATE.src = src;
+  PROG_STATE.at  = at || '';
+  PROG_STATE.sheet   = res.sheet;
+  PROG_STATE.code    = res.code;
+  PROG_STATE.skipped = res.skipped;
+}
 
 /* เรียกตอนบูต ก่อนวาดหน้าแรก — ใช้ของที่โหลดไว้รอบก่อน */
 function applyCachedProgram() {
   const c = LS.get('program', null);
-  if (!c || !applyProgramRows(c.rows)) return false;
-  markProgram('ชีต (แคชไว้)', c.at);
+  if (!c) return false;
+  const res = applyProgramRows(c.rows);
+  if (!res.sheet.length) return false;
+  markProgram_('ชีต (แคชไว้)', c.at, res);
   return true;
 }
 
@@ -126,32 +140,25 @@ function loadProgram() {
   if (NO_SERVER) return Promise.resolve(false);
   return apiGet('getProgram')
     .then(res => {
+      PROG_STATE.tried = true;
       if (!res || !res.ok) return false;
-      if (!applyProgramRows(res.rows)) return false;   // ชีตว่าง/ไม่มีแถวที่ใช้ได้ → คงของเดิม
+      const applied = applyProgramRows(res.rows);
+      if (!applied.sheet.length) {                     // ชีตว่าง/เสียหมด → คงของเดิม แต่บอกให้รู้
+        PROG_STATE.sheet   = applied.sheet;            // ต้องอัปเดตด้วย ไม่งั้นค้างค่าจากรอบก่อน
+        PROG_STATE.code    = applied.code;
+        PROG_STATE.skipped = applied.skipped;
+        onProgramChange(false);
+        return false;
+      }
       const at = todayISO() + ' ' + nowHM();
       const before = LS.get('program', null);
       const changed = !before || JSON.stringify(before.rows) !== JSON.stringify(res.rows);
       LS.set('program', { at, rows: res.rows });
-      markProgram('ชีต', at);
+      markProgram_('ชีต', at, applied);
       onProgramChange(changed);                        // changed=false → ของเดิมอยู่แล้ว ไม่ต้องกวน
       return true;
     })
     .catch(() => false);                               // ออฟไลน์ — ของเดิมใช้ได้อยู่แล้ว
-}
-
-/* ═══════════════ ความก้าวหน้า (progress) ═══════════════
-   ตัวเลขสรุปคิดมาจากชีตแล้ว — แอปแค่วาด
-   แคชคำตอบล่าสุดไว้ เปิดตอนไม่มีเน็ตก็ยังเห็นของเมื่อวาน (บอกวันที่กำกับ)   */
-function cachedProgress() { return LS.get('progress', null); }
-
-function loadProgress() {
-  if (NO_SERVER) return Promise.reject(new Error('ยังไม่ได้ตั้ง API_URL'));
-  return apiGet('progress').then(res => {
-    if (!res || !res.ok) throw new Error(res && res.error ? res.error : 'ตอบกลับผิดรูปแบบ');
-    res.localAt = todayISO() + ' ' + nowHM();
-    LS.set('progress', res);
-    return res;
-  });
 }
 
 /* ═══════════════ ประวัติในเครื่อง — ใช้คำนวณว่าวันนี้ควรทำอะไร ═══════════════ */

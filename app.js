@@ -51,7 +51,6 @@ $('tabs').addEventListener('click', e => {
   const b = e.target.closest('.tab'); if (!b) return;
   if (RUN.on && !confirm('กำลังทำเซสชันอยู่ ออกเลยไหม?')) return;
   RUN.on = false; stopTick(); document.body.classList.remove('running'); show(b.dataset.view);
-  if (b.dataset.view === 'prog') refreshProgress(false);
 });
 
 /* ═══════════════ ตั้งค่าการเชื่อมต่อ ═══════════════ */
@@ -70,12 +69,28 @@ $('btnClearHist').addEventListener('click', () => {
   renderToday(); renderReady(); renderCycle(); renderSetup();
   toast('ล้างแล้ว — เริ่มรอบใหม่');
 });
+/* บอกที่มาของท่าตามความจริง — เคยเขียนเหมาว่า "ยังไม่ได้เติมชีต Program" ทั้งที่
+   สาเหตุจริงอาจเป็นแค่ยังไม่ได้ลองต่อเน็ต หรือชีตมีแถวแต่แถวเสีย                    */
+function programSourceText() {
+  const st = PROG_STATE;
+  const when = st.at ? ' · โหลด ' + st.at : '';
+  let t = 'ท่ามาจาก' + st.src + when;
+
+  if (st.code.length && st.sheet.length)
+    t += '\n⚠️ ชีตไม่มีท่าของ: ' + st.code.map(labelOf).join(' · ') +
+         ' — เซสชันพวกนี้ใช้ของสำรองในแอป (ลบท่าออกจากชีตไม่ได้ทำให้เซสชันหายไป)';
+  else if (!st.sheet.length)
+    t += st.tried ? '\n⚠️ ต่อชีตแล้วแต่ยังไม่มีแถวที่ใช้ได้ — ตรวจว่า Run seedProgram() แล้วหรือยัง'
+                  : '\nยังไม่ได้ดึงจากชีตรอบนี้ (ออฟไลน์อยู่) — ของในแอปใช้ฝึกได้ตามปกติ';
+
+  if (st.skipped.length)
+    t += '\n⚠️ ข้ามแถวที่ใช้ไม่ได้ ' + st.skipped.length + ' แถว: ' + st.skipped.join(' · ');
+  return t;
+}
+
 function renderSetup() {
-  const src = PROGRAM.source
-    ? 'ท่ามาจาก' + PROGRAM.source + (PROGRAM.fetchedAt ? ' · โหลด ' + PROGRAM.fetchedAt : '')
-    : 'ท่ามาจากไฟล์ในแอป (ยังไม่ได้เติมชีต Program)';
-  $('verInfo').textContent = 'โปรแกรมเวอร์ชัน ' + PROGRAM.version + ' · ' + src +
-                             '\n' + PROGRAM.note;
+  $('verInfo').textContent = 'โปรแกรมเวอร์ชัน ' + PROGRAM.version + ' · ' +
+                             programSourceText() + '\n' + PROGRAM.note;
   const last = HIST[HIST.length - 1];
   $('histInfo').textContent = HIST.length
     ? HIST.length + ' รายการ · ล่าสุด ' + labelOf(last.key) + ' ' +
@@ -491,79 +506,6 @@ function finishSession(quit) {
 
 $('btnStart').addEventListener('click', () => startSession(SUGGEST.key));
 $('btnMin').addEventListener('click', () => startSession('min'));
-
-/* ═══════════════ ก้าวหน้า ═══════════════
-   ตัวเลขล้วน ไม่มีเส้นกราฟ — กราฟอยู่ในชีต แท็บ "สรุป" (04_dashboard.gs)
-   ทิศทางที่ดีต่างกันแต่ละแถว: ปวดยิ่งน้อยยิ่งดี · ที่เหลือยิ่งมากยิ่งดี      */
-const fmtN = v => (v === null || v === undefined || v === '' ? '—' : String(v));
-
-function deltaHtml(now, prev, lowerIsBetter, alertOnBad) {
-  if (now == null || prev == null) return '<span class="pg-d pg-d--none">ยังเทียบไม่ได้</span>';
-  const d = Math.round((now - prev) * 10) / 10;
-  if (d === 0) return '<span class="pg-d pg-d--flat">เท่าเดิม</span>';
-  const good = lowerIsBetter ? d < 0 : d > 0;
-  const cls = good ? 'pg-d--up' : (alertOnBad ? 'pg-d--alert' : 'pg-d--down');
-  return '<span class="pg-d ' + cls + '">' + (d > 0 ? '▲ +' : '▼ ') + d + '</span>';
-}
-
-function rowHtml(label, now, prev, unit, lowerIsBetter, sub, alertOnBad) {
-  return '<div class="pg-row">' +
-    '<div class="pg-k">' + esc(label) +
-      (sub ? '<span class="pg-sub">' + esc(sub) + '</span>' : '') + '</div>' +
-    '<div class="pg-v ip-mono">' + esc(fmtN(now)) + (unit ? ' <small>' + esc(unit) + '</small>' : '') + '</div>' +
-    '<div class="pg-c">' + deltaHtml(now, prev, lowerIsBetter, alertOnBad) + '</div></div>';
-}
-
-function renderProgress(p, note) {
-  if (!p) {
-    $('progList').innerHTML = '<p class="hint">ยังไม่มีข้อมูล — กด “โหลดใหม่” ตอนมีเน็ต</p>';
-    $('progTests').innerHTML = ''; $('progLifts').innerHTML = ''; $('progWarn').hidden = true;
-    $('progAt').textContent = note || '';
-    return;
-  }
-  $('progList').innerHTML =
-    rowHtml('ปวดตอนเช้า (เฉลี่ย)', p.pain.now, p.pain.prev, '/10', true,
-            p.pain.n ? 'จาก ' + p.pain.n + ' วันที่บันทึก' : 'ยังไม่ได้บันทึกช่วงนี้', true) +
-    rowHtml('นอน (เฉลี่ย)',        p.sleep.now, p.sleep.prev, 'ชม.', false) +
-    rowHtml('เซสชันที่ทำ',          p.sessions.now, p.sessions.prev, 'ครั้ง', false);
-
-  /* กฎเดียวที่แอปนี้ควรตะโกน: ปวดตอนเช้าขึ้น = เอ็นตามไม่ทัน (docs/SCHEMA.md · ADR-0001) */
-  const painUp = p.pain.now != null && p.pain.prev != null && (p.pain.now - p.pain.prev) >= 0.5;
-  $('progWarn').hidden = !painUp;
-  if (painUp) $('progWarn').textContent =
-    'คะแนนปวดตอนเช้าเพิ่มขึ้น ' + (Math.round((p.pain.now - p.pain.prev) * 10) / 10) +
-    ' — ช่องว่างกล้ามเนื้อ–เอ็นกำลังเปิด ให้ลดโหลด 20% ในรอบถัดไป';
-
-  const tests = p.tests || [];
-  $('progTests').innerHTML = tests.length
-    ? tests.map(t => rowHtml(t.name, t.last, t.prev, t.unit,
-        (PROGRAM.lowerIsBetter || []).indexOf(t.id) >= 0,
-        t.ago === 0 ? 'วันนี้' : t.ago != null ? t.ago + ' วันก่อน' : '')).join('')
-    : '<p class="hint">ยังไม่มีผลทดสอบ</p>';
-
-  const lifts = p.lifts || [];
-  $('progLifts').innerHTML = lifts.length
-    ? lifts.map(l => rowHtml(l.name, l.now, l.prev, 'กก.', false)).join('')
-    : '<p class="hint">ยังไม่มีเซ็ตที่บันทึกน้ำหนัก</p>';
-
-  $('progAt').textContent = note || ('ข้อมูล ณ ' + (p.localAt || ''));
-}
-
-let progLoaded = false;
-function refreshProgress(force) {
-  const c = cachedProgress();
-  if (c) renderProgress(c, 'ข้อมูลที่โหลดไว้ ' + (c.localAt || '') + ' — กำลังโหลดใหม่…');
-  else renderProgress(null, 'กำลังโหลด…');
-  if (!force && progLoaded) return;
-  loadProgress()
-    .then(p => { progLoaded = true; renderProgress(p); })
-    .catch(e => {
-      const c2 = cachedProgress();
-      renderProgress(c2, c2 ? 'ออฟไลน์ — แสดงของที่โหลดไว้ ' + (c2.localAt || '')
-                            : 'โหลดไม่ได้: ' + e.message);
-    });
-}
-$('btnProgReload').addEventListener('click', () => refreshProgress(true));
 
 /* ═══════════════ เริ่มต้น ═══════════════ */
 /* วาดด้วยของที่มีในเครื่องก่อนเสมอ (แคช > program.js) แล้วค่อยไปถามชีต

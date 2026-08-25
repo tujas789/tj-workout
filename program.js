@@ -211,13 +211,6 @@ const PROGRAM = {
     { id:'fresh', q:'ไม่มีความล้าค้างจากเมื่อวาน?' }
   ],
 
-  /* ── ตัวชี้วัดที่ "น้อยลง = ดีขึ้น" ──
-     ค่าเริ่มต้นของทุกตัวเลขคือมากขึ้นดีขึ้น สองตัวนี้กลับด้าน:
-       dropoff  — แรงตก 0–10 ยิ่งตกน้อยยิ่งดี
-       recovery — วินาทีจนพูดได้เต็มประโยค ยิ่งฟื้นเร็วยิ่งดี
-     ★ เพิ่มท่าทดสอบใหม่ที่น้อยลงดีขึ้น ต้องมาเติม id ที่นี่ด้วย ไม่งั้นการ์ดก้าวหน้าอ่านผิดทาง */
-  lowerIsBetter: ['dropoff', 'recovery'],
-
   /* ── ทดสอบรายเดือน ── */
   tests: [
     { id:'wallsit_max', name:'Wall sit นานสุด',            unit:'วินาที' },
@@ -306,32 +299,58 @@ function rowToItem_(r) {
   return it;
 }
 
-/* คืนจำนวนเซสชันที่ทับสำเร็จ · 0 = ไม่ทับอะไรเลย (แอปใช้ของในไฟล์นี้ต่อ) */
+/* ตรวจว่าแถวนี้ใช้ตั้งนาฬิกาได้จริงไหม — นาฬิกาคือเหตุผลที่แอปนี้มีอยู่ (หลักการข้อ 2)
+   แถวที่ผ่านมาแบบขาดตัวเลขจะทำให้นาฬิกาเป็น NaN กลางเซสชัน ซึ่งแย่กว่าไม่ดึงจากชีตเลย
+   คืน '' ถ้าใช้ได้ · คืนเหตุผลถ้าใช้ไม่ได้ */
+function itemProblem_(it) {
+  if (!it.id) return 'ไม่มี ex_id';
+  if (it.type === 'time')     return it.secs > 0 ? '' : 'type=time แต่ secs ว่าง';
+  if (it.type === 'hold')     return (it.hold > 0 && it.sets > 0) ? '' : 'type=hold แต่ hold/sets ว่าง';
+  if (it.type === 'interval') return '';                     // โดสมาจาก PROGRAM.intervals ไม่ใช่จากชีต
+  if (it.type === 'reps')     return it.sets > 0 ? '' : 'type=reps แต่ sets ว่าง';
+  return 'type ไม่รู้จัก: ' + it.type;
+}
+
+/* รับรายการท่าจากชีตมาทับ แล้วรายงานว่าเซสชันไหนมาจากไหน
+   คืน { sheet:[key], code:[key], skipped:[ข้อความ] }
+   ★ เซสชันที่ชีตไม่มีแถว (หรือมีแต่เสียทั้งหมด) จะยังใช้ของในไฟล์นี้ — และต้อง "บอกให้รู้"
+     ไม่ใช่ถอยเงียบ ๆ เพราะเจ้าของอาจเข้าใจว่าลบท่าออกจากชีตแล้วมีผล ทั้งที่ไม่มี */
 function applyProgramRows(rows) {
-  if (!Array.isArray(rows) || !rows.length) return 0;
+  const all  = Object.keys(PROGRAM.sessions);
+  const out  = { sheet: [], code: all.slice(), skipped: [] };
+  if (!Array.isArray(rows) || !rows.length) return out;
 
   const bySession = {};
   rows.forEach(r => {
     if (!r) return;
     const key = str_(r.session_key), id = str_(r.ex_id);
-    if (!key || !id) return;                       // แถวว่าง/แถวขยะ — ข้าม
+    if (!key || !id) return;                       // แถวว่างท้ายชีต — ข้ามเงียบ ๆ ได้
+    if (!PROGRAM.sessions[key]) {
+      out.skipped.push('เซสชัน "' + key + '" ที่แอปไม่รู้จัก');
+      return;
+    }
     (bySession[key] = bySession[key] || []).push(r);
   });
 
-  let n = 0;
   Object.keys(bySession).forEach(key => {
-    if (!PROGRAM.sessions[key]) return;            // ชีตมีเซสชันที่โค้ดไม่รู้จัก — ข้าม
-    const items = bySession[key]
+    const items = [];
+    bySession[key]
       .slice()
       .sort((a, b) => (num_(a.order) || 0) - (num_(b.order) || 0))
-      .map(rowToItem_);
-    if (!items.length) return;
+      .forEach(r => {
+        const it  = rowToItem_(r);
+        const bad = itemProblem_(it);
+        if (bad) out.skipped.push(key + ' · ' + (it.id || '(ไม่มีชื่อ)') + ': ' + bad);
+        else items.push(it);
+      });
+    if (!items.length) return;                     // เสียหมดทั้งเซสชัน — คงของสำรองไว้
     PROGRAM.sessions[key].items = items;
-    n++;
+    out.sheet.push(key);
   });
 
-  if (n) recomputeMins();
-  return n;
+  out.code = all.filter(k => out.sheet.indexOf(k) < 0);
+  if (out.sheet.length) recomputeMins();
+  return out;
 }
 
 if (typeof module !== 'undefined') module.exports = PROGRAM;
