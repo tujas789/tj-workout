@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="instrument-panel.css?v=20260825b">
-<link rel="stylesheet" href="style.css?v=20260825b">
+<link rel="stylesheet" href="instrument-panel.css?v=20260825c">
+<link rel="stylesheet" href="style.css?v=20260825c">
 </head>
 <body class="ip-page">
 
@@ -24,7 +24,7 @@
   </div>
   <nav class="tabs" id="tabs">
     <button class="tab is-on" data-view="today">วันนี้</button>
-    <button class="tab" data-view="week">สัปดาห์</button>
+    <button class="tab" data-view="cycle">รอบนี้</button>
     <button class="tab" data-view="morning">เช้านี้</button>
   </nav>
 </header>
@@ -51,10 +51,12 @@
   <section id="v-today" class="view is-on">
     <div class="ip-card sess-head" style="position:relative">
       <span class="ip-screw"></span>
-      <div class="ip-label">เซสชันวันนี้</div>
+      <div class="ip-label">ถัดไปในรอบ</div>
       <h1 class="sess-title" id="todayTitle">—</h1>
       <p class="sess-why" id="todayWhy"></p>
       <div class="sess-meta ip-mono" id="todayMeta"></div>
+      <div class="sess-defer" id="todayDefer" hidden></div>
+      <div class="sess-meta ip-mono" id="todayLast"></div>
       <button class="ip-btn ip-btn--block" id="btnStart" style="margin-top:14px">เริ่มเซสชัน</button>
       <button class="ip-btn ip-btn--ghost ip-btn--block" id="btnMin" style="margin-top:8px">
         เวลาไม่พอ → โดสขั้นต่ำ 12 นาที
@@ -69,21 +71,28 @@
     </div>
   </section>
 
-  <!-- ══════════ สัปดาห์ ══════════ -->
-  <section id="v-week" class="view">
+  <!-- ══════════ รอบนี้ ══════════ -->
+  <section id="v-cycle" class="view">
     <div class="ip-card">
-      <div class="ip-label">สัปดาห์</div>
-      <p class="hint">ของหนักอยู่ต้นสัปดาห์ ให้ไกลจากวันทดสอบที่สุด · กดวันไหนก็เปิดเซสชันนั้นได้</p>
-      <div id="weekList"></div>
+      <div class="ip-label">รอบนี้</div>
+      <p class="hint">
+        เซสชันหมุนเป็นวง ไม่ผูกกับวันในปฏิทิน — จะทำวันไหนก็ได้ ขอแค่ตามลำดับและเว้นระยะห่าง
+        กดอันไหนก็เริ่มอันนั้นได้ ต่อให้แอปไม่ได้เสนอ
+      </p>
+      <div id="cycleList"></div>
+      <div class="cyc-count ip-mono" id="cycCount"></div>
+      <button class="ip-btn ip-btn--ghost ip-btn--block" id="btnTestDay" style="margin-top:10px">
+        วันนี้ลงสนามแบด → บันทึกเป็นวันทดสอบ
+      </button>
     </div>
     <div class="ip-card">
-      <div class="ip-label">บล็อก 5 สัปดาห์</div>
+      <div class="ip-label">บล็อก 5 รอบ</div>
       <div class="blk-row" style="font-weight:600">
-        <span>สัปดาห์</span><span>โฟกัส</span><span>โหลด</span>
+        <span>รอบที่</span><span>โฟกัส</span><span>โหลด</span>
       </div>
       <div id="blockList"></div>
       <p class="hint" style="margin-top:10px">
-        สัปดาห์ 4 ไม่เพิ่มน้ำหนัก แต่ท่าค้างเดินหน้าต่อ — เอ็นได้ไล่ตามกล้ามเนื้อทัน (ADR-0001)
+        รอบที่ 4 ไม่เพิ่มน้ำหนัก แต่ท่าค้างเดินหน้าต่อ — เอ็นได้ไล่ตามกล้ามเนื้อทัน (ADR-0001)
       </p>
     </div>
   </section>
@@ -156,8 +165,8 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="program.js?v=20260825b"></script>
-<script src="api.js?v=20260825b"></script>
-<script src="app.js?v=20260825b"></script>
+<script src="program.js?v=20260825c"></script>
+<script src="api.js?v=20260825c"></script>
+<script src="app.js?v=20260825c"></script>
 </body>
 </html>

@@ -60,30 +60,76 @@ $('btnSaveApi').addEventListener('click', () => {
     .catch(e => { $('apiStatus').textContent = '✗ ' + e.message + ' — ถ้าได้ 403 แปลว่ายังไม่ได้ Run setup() ในตัว editor'; });
 });
 
-/* ═══════════════ วันนี้ ═══════════════ */
-const DOW_TH = ['อา.','จ.','อ.','พ.','พฤ.','ศ.','ส.'];
-const todayPlan = () => PROGRAM.week.find(w => w.dow === new Date().getDay()) || PROGRAM.week[0];
+/* ═══════════════ วันนี้ — เสนอเซสชันถัดไปจาก "รอบ" ไม่ใช่จากวันในปฏิทิน ═══════════════ */
+
+/* เหตุผลที่ยังทำเซสชันนี้ไม่ได้ (null = ทำได้) */
+function blockReason(key) {
+  const r = PROGRAM.rules[key] || {};
+  const ls = lastOf(key);
+  if (ls) {
+    const g = daysSince(ls.d);
+    if (g < (r.minGap || 2))
+      return 'เพิ่งทำไป' + (g === 0 ? 'วันนี้' : 'เมื่อ ' + g + ' วันก่อน') + ' — ควรเว้น ' + (r.minGap || 2) + ' วัน';
+  }
+  if (r.afterTest) {
+    const lt = lastOf('test');
+    if (lt && daysSince(lt.d) < r.afterTest) {
+      const g = daysSince(lt.d);
+      return 'ลงสนาม' + (g === 0 ? 'วันนี้' : g === 1 ? 'เมื่อวาน' : 'เมื่อ ' + g + ' วันก่อน') +
+             ' — ขาหนักต้องห่างวันทดสอบ ' + r.afterTest + ' วัน';
+    }
+  }
+  return null;
+}
+
+/* เซสชันถัดไปในวง ถ้าติดกติกาก็ข้ามไปตัวถัดไป ถ้าติดหมดก็เสนอปั่นเบา */
+function suggest() {
+  const cyc = PROGRAM.cycle;
+  const mains = HIST.filter(h => cyc.includes(h.key));
+  const last  = mains[mains.length - 1];
+  const start = last ? (cyc.indexOf(last.key) + 1) % cyc.length : 0;
+  const skipped = [];
+  for (let i = 0; i < cyc.length; i++) {
+    const key = cyc[(start + i) % cyc.length];
+    const why = blockReason(key);
+    if (!why) return { key, skipped };
+    skipped.push({ key, why });
+  }
+  return { key: 'easy', skipped };
+}
+
+let SUGGEST = null;
 
 function renderToday() {
-  const d = new Date();
-  $('hdDate').textContent = DOW_TH[d.getDay()] + ' ' + todayISO();
+  $('hdDate').textContent = todayISO();
+  SUGGEST = suggest();
+  const key = SUGGEST.key;
+  const s = PROGRAM.sessions[key];
 
-  const plan = todayPlan();
-  const s = PROGRAM.sessions[plan.key];
-  $('todayTitle').textContent = plan.label;
-  $('todayWhy').textContent = s ? (s.why || '') :
-    (plan.key === 'test'
-      ? 'วันวัดผลของทั้งสัปดาห์ — ลงเต็มที่ก็ต่อเมื่อเกจวัดความพร้อมผ่านครบ 3 ข้อ'
-      : 'วันพัก — ร่างกายสร้างของใหม่ตอนนี้ ไม่ใช่ตอนฝึก');
+  $('todayTitle').textContent = s.label;
+  $('todayWhy').textContent   = s.why || '';
+  $('todayMeta').textContent  = s.place + ' · ' + s.mins + ' นาที · ' + s.items.length + ' ท่า';
+  $('btnStart').textContent   = 'เริ่ม' + (key === 'easy' ? 'ปั่นเบา' : 'เซสชัน');
+  $('btnMin').style.display   = key === 'easy' ? 'none' : '';
 
-  $('todayMeta').textContent = s
-    ? (s.place + ' · ' + s.mins + ' นาที · ' + s.items.length + ' ท่า')
-    : (plan.key === 'test' ? 'สนามแบด' : '—');
+  /* ทำไมถึงเสนออันนี้ · ทำไมข้ามอันอื่น · เตือนล่วงหน้า — ประกอบครั้งเดียวแล้วเซ็ตทีเดียว */
+  const notes = SUGGEST.skipped.map(x =>
+    'ข้าม <b>' + esc(labelOf(x.key)) + '</b> — ' + esc(x.why));
+  const rule = PROGRAM.rules[key];
+  if (rule && rule.note) notes.push(esc(rule.note));
 
-  $('btnStart').style.display = s ? '' : 'none';
-  $('btnMin').style.display   = (s && plan.key !== 'easy') ? '' : 'none';
-  if (s) $('btnStart').textContent = 'เริ่ม' + (plan.key === 'easy' ? 'ปั่นเบา' : 'เซสชัน');
+  const box = $('todayDefer');
+  box.hidden = !notes.length;
+  box.innerHTML = notes.map(n => '<div>' + n + '</div>').join('');
+
+  /* ทำอะไรไปล่าสุด */
+  const lastAny = HIST[HIST.length - 1];
+  $('todayLast').textContent = lastAny
+    ? 'ล่าสุด: ' + labelOf(lastAny.key) + ' ' + (daysSince(lastAny.d) === 0 ? 'วันนี้' : daysSince(lastAny.d) + ' วันก่อน')
+    : 'ยังไม่เคยบันทึกเซสชันไหนเลย — เริ่มที่อันนี้ได้';
 }
+const labelOf = key => key === 'test' ? 'วันทดสอบ (แบด)'
+  : (PROGRAM.sessions[key] ? PROGRAM.sessions[key].label.split(' — ')[0] : key);
 
 /* ── เกจวัดความพร้อม ── */
 let ready = LS.get('ready:' + todayISO(), {});
@@ -108,24 +154,45 @@ $('readyList').addEventListener('click', e => {
   LS.set('ready:' + todayISO(), ready); renderReady();
 });
 
-/* ═══════════════ สัปดาห์ ═══════════════ */
-function renderWeek() {
-  const today = new Date().getDay();
-  $('weekList').innerHTML = PROGRAM.week.map(w =>
-    '<button class="wk-row' + (w.dow === today ? ' is-today' : '') + '" data-key="' + w.key + '">' +
-      '<span class="wk-dow">' + DOW_TH[w.dow] + '</span>' +
-      '<span class="wk-lbl">' + esc(w.label) + '</span>' +
-      '<span class="wk-min">' + (w.mins ? w.mins + ' น.' : '—') + '</span></button>').join('');
+/* ═══════════════ รอบนี้ ═══════════════ */
+function renderCycle() {
+  const nextKey = (SUGGEST || suggest()).key;
+  const rows = PROGRAM.cycle.concat(['easy']);
+
+  $('cycleList').innerHTML = rows.map(key => {
+    const s = PROGRAM.sessions[key];
+    const ls = lastOf(key);
+    const why = key === 'easy' ? null : blockReason(key);
+    const status = ls ? (daysSince(ls.d) === 0 ? 'วันนี้' : daysSince(ls.d) + ' วันก่อน') : 'ยังไม่เคย';
+    const mark = key === nextKey ? '▶' : why ? '⏸' : '○';
+    return '<button class="wk-row' + (key === nextKey ? ' is-next' : '') + '" data-key="' + key + '">' +
+      '<span class="wk-dow ' + (why ? 'wait' : 'due') + '">' + mark + '</span>' +
+      '<span class="wk-lbl">' + esc(s.label) +
+        (why ? '<br><span style="font-size:12px;color:var(--ip-mut)">' + esc(why) + '</span>' : '') + '</span>' +
+      '<span class="wk-min">' + status + '</span></button>';
+  }).join('');
+
+  const w = PROGRAM.perWeek;
+  const mainDone = PROGRAM.cycle.reduce((n, k) => n + doneWithin(k, 7), 0);
+  $('cycCount').textContent =
+    '7 วันที่ผ่านมา · เซสชันหลัก ' + mainDone + '/' + w.main +
+    ' · ปั่นเบา ' + doneWithin('easy', 7) + '/' + w.easy +
+    ' · ลงสนาม ' + doneWithin('test', 7) + '/' + w.test;
 
   $('blockList').innerHTML = PROGRAM.block.map(b =>
     '<div class="blk-row"><span>' + b.w + '</span><span>' + esc(b.focus) + '</span>' +
     '<span>' + esc(b.load) + ' · ค้าง ' + b.hold + ' วิ</span></div>').join('');
 }
-$('weekList').addEventListener('click', e => {
+$('cycleList').addEventListener('click', e => {
   const r = e.target.closest('.wk-row'); if (!r) return;
-  const s = PROGRAM.sessions[r.dataset.key];
-  if (!s) return toast(r.dataset.key === 'test' ? 'วันทดสอบ — บันทึกผลในหน้า “เช้านี้”' : 'วันพัก');
+  const why = blockReason(r.dataset.key);
+  if (why && !confirm(labelOf(r.dataset.key) + ' — ' + why + '\n\nเริ่มเลยไหม?')) return;
   startSession(r.dataset.key);
+});
+$('btnTestDay').addEventListener('click', () => {
+  if (!confirm('บันทึกว่าวันนี้ลงสนามแบด?')) return;
+  Log.testDay(); renderSyncBadge(); renderToday(); renderCycle();
+  toast('บันทึกวันทดสอบแล้ว — วันยิมจะถูกเลื่อนออกไปให้อัตโนมัติ');
 });
 
 /* ═══════════════ เช้านี้ ═══════════════ */
@@ -331,13 +398,13 @@ function finishSession(quit) {
   stopTick(); RUN.on = false; document.body.classList.remove('running');
   const mins = Math.max(1, Math.round((Date.now() - RUN.t0) / 60000));
   Log.session(RUN.key, mins, RUN.done, RUN.items.length);
-  renderSyncBadge(); show('today');
+  renderSyncBadge(); renderToday(); renderCycle(); show('today');
   toast(quit ? 'ออกแล้ว · ทำไป ' + RUN.done + '/' + RUN.items.length + ' ท่า (' + mins + ' นาที)'
              : 'จบเซสชัน ' + mins + ' นาที — บันทึกแล้ว');
 }
 
-$('btnStart').addEventListener('click', () => startSession(todayPlan().key));
+$('btnStart').addEventListener('click', () => startSession(SUGGEST.key));
 $('btnMin').addEventListener('click', () => startSession('min'));
 
 /* ═══════════════ เริ่มต้น ═══════════════ */
-renderToday(); renderReady(); renderWeek(); renderMorning(); renderSyncBadge(); syncSoon(800);
+renderToday(); renderReady(); renderCycle(); renderMorning(); renderSyncBadge(); syncSoon(800);

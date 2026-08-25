@@ -72,8 +72,18 @@ button.ip-badge{ cursor:pointer; font-family:var(--ip-mono); }
 .wk-dow{ font:700 15px var(--ip-mono); color:var(--ip-accent); }
 .wk-lbl{ font-size:14px; line-height:1.45; }
 .wk-min{ font:500 12px var(--ip-mono); color:var(--ip-mut); white-space:nowrap; }
-.wk-row.is-today{ background:var(--ip-card-2); }
-.wk-row.is-today .wk-lbl{ font-weight:700; }
+.wk-row.is-next{ background:var(--ip-card-2); }
+.wk-row.is-next .wk-lbl{ font-weight:700; }
+.wk-dow.due{ color:var(--ip-accent); }
+.wk-dow.wait{ color:var(--ip-mut); }
+.cyc-count{
+  margin-top:12px; padding:9px; text-align:center; font-size:12.5px;
+  background:var(--ip-card-2); border:var(--ip-border) solid var(--ip-line);
+}
+.sess-defer{
+  margin-top:10px; padding:9px 11px; font-size:12.5px; line-height:1.6;
+  background:#ffe9c7; border-left:3px solid var(--ip-accent);
+}
 
 .blk-row{
   display:grid; grid-template-columns:3.4rem 5.5rem 1fr; gap:8px;

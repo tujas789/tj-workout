@@ -108,6 +108,17 @@ function renderSyncBadge() {
   else                { el.textContent = 'ซิงก์แล้ว'; el.className = 'ip-badge ip-badge--ok'; }
 }
 
+/* ═══════════════ ประวัติในเครื่อง — ใช้คำนวณว่าวันนี้ควรทำอะไร ═══════════════ */
+let HIST = LS.get('hist', []);                      // [{d:'2026-08-25', key:'gym'}]
+function histAdd(key) {
+  HIST.push({ d: todayISO(), key });
+  HIST = HIST.slice(-120);                          // เก็บพอสำหรับ ~4 เดือน
+  LS.set('hist', HIST);
+}
+const daysSince = d => Math.floor((Date.parse(todayISO()) - Date.parse(d)) / 86400000);
+const lastOf = key => { for (let i = HIST.length - 1; i >= 0; i--) if (HIST[i].key === key) return HIST[i]; return null; };
+const doneWithin = (key, days) => HIST.filter(h => h.key === key && daysSince(h.d) < days).length;
+
 /* ═══════════════ บันทึกแต่ละชนิด ═══════════════ */
 const Log = {
   set(sessionKey, exId, exName, setNo, weight, reps, note) {
@@ -120,6 +131,11 @@ const Log = {
   },
   session(sessionKey, mins, done, total) {
     enqueue('Session', [todayISO(), nowHM(), sessionKey, mins, done + '/' + total]);
+    histAdd(sessionKey);
+  },
+  testDay() {
+    enqueue('Session', [todayISO(), nowHM(), 'test', '', 'ลงสนาม']);
+    histAdd('test');
   },
   daily(pain, sleep, where, note) {
     enqueue('Daily', [todayISO(), nowHM(), pain, sleep, where || '', note || '']);
