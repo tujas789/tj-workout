@@ -3,7 +3,7 @@
    ★ ไม่มี auth/token/LockService — ผู้ใช้คนเดียว ไม่มี race (ต่างจาก TJ Inventory) */
 
 const SHEETS = {
-  Program: ['session_key','order','ex_id','name','type','sets','reps','tempo','hold','rest','cue','alt','why'],
+  Program: ['session_key','order','ex_id','name','type','sets','reps','tempo','hold','rest','cue','alt','why','secs','log'],
   Session: ['date','time','session_key','mins','done'],
   SetLog : ['date','time','session_key','ex_id','ex_name','set_no','weight','reps','note'],
   Daily  : ['date','time','pain','sleep_hrs','where','note'],

@@ -1,4 +1,4 @@
-# sync-to-repo.ps1 — ฝั่ง Windows ของ sync-to-repo.sh
+﻿# sync-to-repo.ps1 — ฝั่ง Windows ของ sync-to-repo.sh
 #
 #   ทำไมต้องมีขั้นตอนนี้: git กับ OneDrive อยู่ด้วยกันไม่ได้เมื่อใช้ 2 เครื่อง
 #   OneDrive จะซิงก์โฟลเดอร์ .git/ ซึ่งเป็นฐานข้อมูลไบนารีที่ git เขียนทับตลอด

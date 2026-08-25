@@ -105,6 +105,55 @@ window.addEventListener('online', () => syncSoon(500));
 document.addEventListener('visibilitychange', () => { if (!document.hidden) syncSoon(500); });
 
 
+/* ═══════════════ โปรแกรมจากชีต (getProgram) ═══════════════
+   ลำดับความจริง: ชีต > แคชในเครื่อง > program.js
+   ★ ไม่บล็อกการเปิดแอป — แอปเปิดด้วยของที่มีอยู่ทันที แล้วค่อยอัปเดตเมื่อโหลดเสร็จ
+     (หลักการข้อ 1: ยิม/สนามแบดสัญญาณไม่ดี ห้ามให้เน็ตเป็นเงื่อนไขของการฝึก)      */
+let onProgramChange = () => {};   // app.js ตั้งเอง — api.js ไม่แตะ DOM
+
+function markProgram(src, at) { PROGRAM.source = src; PROGRAM.fetchedAt = at || ''; }
+
+/* เรียกตอนบูต ก่อนวาดหน้าแรก — ใช้ของที่โหลดไว้รอบก่อน */
+function applyCachedProgram() {
+  const c = LS.get('program', null);
+  if (!c || !applyProgramRows(c.rows)) return false;
+  markProgram('ชีต (แคชไว้)', c.at);
+  return true;
+}
+
+/* เรียกหลังวาดหน้าแรก — ได้ของใหม่ค่อยวาดทับ */
+function loadProgram() {
+  if (NO_SERVER) return Promise.resolve(false);
+  return apiGet('getProgram')
+    .then(res => {
+      if (!res || !res.ok) return false;
+      if (!applyProgramRows(res.rows)) return false;   // ชีตว่าง/ไม่มีแถวที่ใช้ได้ → คงของเดิม
+      const at = todayISO() + ' ' + nowHM();
+      const before = LS.get('program', null);
+      const changed = !before || JSON.stringify(before.rows) !== JSON.stringify(res.rows);
+      LS.set('program', { at, rows: res.rows });
+      markProgram('ชีต', at);
+      onProgramChange(changed);                        // changed=false → ของเดิมอยู่แล้ว ไม่ต้องกวน
+      return true;
+    })
+    .catch(() => false);                               // ออฟไลน์ — ของเดิมใช้ได้อยู่แล้ว
+}
+
+/* ═══════════════ ความก้าวหน้า (progress) ═══════════════
+   ตัวเลขสรุปคิดมาจากชีตแล้ว — แอปแค่วาด
+   แคชคำตอบล่าสุดไว้ เปิดตอนไม่มีเน็ตก็ยังเห็นของเมื่อวาน (บอกวันที่กำกับ)   */
+function cachedProgress() { return LS.get('progress', null); }
+
+function loadProgress() {
+  if (NO_SERVER) return Promise.reject(new Error('ยังไม่ได้ตั้ง API_URL'));
+  return apiGet('progress').then(res => {
+    if (!res || !res.ok) throw new Error(res && res.error ? res.error : 'ตอบกลับผิดรูปแบบ');
+    res.localAt = todayISO() + ' ' + nowHM();
+    LS.set('progress', res);
+    return res;
+  });
+}
+
 /* ═══════════════ ประวัติในเครื่อง — ใช้คำนวณว่าวันนี้ควรทำอะไร ═══════════════ */
 let HIST = LS.get('hist', []);                      // [{d:'2026-08-25', key:'gym'}]
 function histAdd(key) {

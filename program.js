@@ -211,6 +211,13 @@ const PROGRAM = {
     { id:'fresh', q:'ไม่มีความล้าค้างจากเมื่อวาน?' }
   ],
 
+  /* ── ตัวชี้วัดที่ "น้อยลง = ดีขึ้น" ──
+     ค่าเริ่มต้นของทุกตัวเลขคือมากขึ้นดีขึ้น สองตัวนี้กลับด้าน:
+       dropoff  — แรงตก 0–10 ยิ่งตกน้อยยิ่งดี
+       recovery — วินาทีจนพูดได้เต็มประโยค ยิ่งฟื้นเร็วยิ่งดี
+     ★ เพิ่มท่าทดสอบใหม่ที่น้อยลงดีขึ้น ต้องมาเติม id ที่นี่ด้วย ไม่งั้นการ์ดก้าวหน้าอ่านผิดทาง */
+  lowerIsBetter: ['dropoff', 'recovery'],
+
   /* ── ทดสอบรายเดือน ── */
   tests: [
     { id:'wallsit_max', name:'Wall sit นานสุด',            unit:'วินาที' },
@@ -251,8 +258,9 @@ function sessionSecs_(s, iv) {
   return s.items.reduce((t, it) => t + itemSecs_(it, iv), 0);
 }
 
-/* interval แบบ B ยาวกว่า A เล็กน้อย — ใช้ตัวยาวสุดเป็นตัวตั้งเวลาเซสชัน */
-(function computeMins() {
+/* interval แบบ B ยาวกว่า A เล็กน้อย — ใช้ตัวยาวสุดเป็นตัวตั้งเวลาเซสชัน
+   ★ เรียกซ้ำได้ — ต้องเรียกใหม่ทุกครั้งที่ท่าเปลี่ยน (เช่น โหลดโปรแกรมจากชีตมาทับ) */
+function recomputeMins() {
   const len = x => x.rounds * x.work + (x.rounds - 1) * x.rest;
   const iv = len(PROGRAM.intervals.A) >= len(PROGRAM.intervals.B)
            ? PROGRAM.intervals.A : PROGRAM.intervals.B;
@@ -263,6 +271,67 @@ function sessionSecs_(s, iv) {
   Object.keys(PROGRAM.sessions).forEach(k => {
     PROGRAM.sessions[k].mins = Math.round(sessionSecs_(PROGRAM.sessions[k], iv) / 60);
   });
-})();
+}
+recomputeMins();
+
+/* ══════════════════════════════════════════════════════════════════════
+   รับ "รายการท่า" จากชีต Program มาทับของในไฟล์นี้
+   ─ ชีตเก็บแค่รายการท่า (หลักการข้อ 3: แก้ท่า/โดส ไม่ต้อง deploy)
+   ─ ส่วนที่ยังอยู่ในโค้ด: ชื่อเซสชัน · cycle · กติการะยะห่าง · interval ·
+     บล็อก 5 สัปดาห์ · ท่าทดสอบ · เกจความพร้อม — พวกนี้เป็นตรรกะ ไม่ใช่โดส
+   ─ เซสชันที่ชีตไม่มี → ของเดิมในไฟล์นี้ยังอยู่ (ชีตพังบางส่วนก็ยังฝึกได้)
+   ══════════════════════════════════════════════════════════════════════ */
+function num_(x) {
+  if (x === '' || x == null) return undefined;
+  const n = Number(x);
+  return isNaN(n) ? undefined : n;
+}
+function str_(x) {
+  const s = String(x == null ? '' : x).trim();
+  return s === '' ? undefined : s;
+}
+const truthy_ = x => /^(y|yes|true|1|ใช่)$/i.test(String(x == null ? '' : x).trim());
+
+function rowToItem_(r) {
+  const it = {
+    id:   str_(r.ex_id),
+    name: str_(r.name) || str_(r.ex_id),
+    type: str_(r.type) || 'reps'
+  };
+  const opt = { sets: num_(r.sets), hold: num_(r.hold), rest: num_(r.rest), secs: num_(r.secs),
+                reps: str_(r.reps), tempo: str_(r.tempo),
+                cue: str_(r.cue), alt: str_(r.alt), why: str_(r.why) };
+  Object.keys(opt).forEach(k => { if (opt[k] !== undefined) it[k] = opt[k]; });
+  if (truthy_(r.log)) it.log = true;
+  return it;
+}
+
+/* คืนจำนวนเซสชันที่ทับสำเร็จ · 0 = ไม่ทับอะไรเลย (แอปใช้ของในไฟล์นี้ต่อ) */
+function applyProgramRows(rows) {
+  if (!Array.isArray(rows) || !rows.length) return 0;
+
+  const bySession = {};
+  rows.forEach(r => {
+    if (!r) return;
+    const key = str_(r.session_key), id = str_(r.ex_id);
+    if (!key || !id) return;                       // แถวว่าง/แถวขยะ — ข้าม
+    (bySession[key] = bySession[key] || []).push(r);
+  });
+
+  let n = 0;
+  Object.keys(bySession).forEach(key => {
+    if (!PROGRAM.sessions[key]) return;            // ชีตมีเซสชันที่โค้ดไม่รู้จัก — ข้าม
+    const items = bySession[key]
+      .slice()
+      .sort((a, b) => (num_(a.order) || 0) - (num_(b.order) || 0))
+      .map(rowToItem_);
+    if (!items.length) return;
+    PROGRAM.sessions[key].items = items;
+    n++;
+  });
+
+  if (n) recomputeMins();
+  return n;
+}
 
 if (typeof module !== 'undefined') module.exports = PROGRAM;

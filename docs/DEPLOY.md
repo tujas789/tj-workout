@@ -7,7 +7,9 @@
 - **scriptId:** `1TD8fMzsNHlp9zZBj1CrC8XopZJUbAHsBBAWd9RHG0O0HFMwfDwKJjCWJ` (container-bound)
 - **Web App `/exec`:**
   `https://script.google.com/macros/s/AKfycbzcxFZYCXG2RNeqG6MteHEdPhQr5W7HU0JBW7HXGqS8T_9jVhq3065cipCOMV8Zkj6Z/exec`
-  Execute as: **Me** · Access: **Anyone** · deploy ล่าสุด **v5 (2026-08-25, ถอด action=recent)**
+  Execute as: **Me** · Access: **Anyone** · deploy ล่าสุด **v7 (2026-08-25)**
+  v7 = เพิ่ม `?action=progress` · `seedProgram()` · `buildDashboard()`
+  ✅ Run ครบแล้วทั้ง `setup()` · `seedProgram()` (25 แถว) · `buildDashboard()`
   ⚠️ ทุกครั้งที่ deploy อัปเดตเลขเวอร์ชันบรรทัดนี้ให้ตรง (เช็คด้วย `clasp list-deployments`)
 
 ### สร้างครั้งแรกด้วย clasp (ทำไปแล้ว — บันทึกไว้เผื่อทำโปรเจกต์ใหม่)
@@ -41,6 +43,22 @@ clasp open-script
 ```
 → เลือกฟังก์ชัน `setup` → **Run** → กด Review permissions → Advanced → Go to workout (unsafe) → Allow
 ครั้งเดียวจบ ได้ทั้งสิทธิ์และชีต 5 ใบพร้อมกัน หลังจากนั้น `?action=ping` จะตอบ JSON
+
+### 📋 ต้องรันเองในตัว editor — 3 อย่าง (หลังย้ายโปรแกรมเข้าชีต)
+`clasp push -f` แล้ว deploy เวอร์ชันใหม่ก่อน จากนั้น `clasp open-script` → กด `Cmd+R` → Run ทีละอัน
+
+| ลำดับ | ฟังก์ชัน | ทำอะไร | รันซ้ำได้ไหม |
+|---|---|---|---|
+| 1 | `setup()` | เติมคอลัมน์ใหม่ `secs` `log` ในหัวตาราง Program | ได้ ไม่แตะข้อมูล |
+| 2 | `seedProgram()` | เติมท่า 25 แถวลงชีต Program | ⚠️ **ลบแถวเดิมก่อนเขียนใหม่** |
+| 3 | `buildDashboard()` | สร้างชีต `สรุป` + กราฟ 4 อัน | ได้ (ลบชีตเดิมแล้วสร้างใหม่) |
+
+เช็คผลที่ **Execution log** · แล้วทดสอบจากเบราว์เซอร์:
+`…/exec?action=getProgram` ต้องได้ 25 แถว · `…/exec?action=progress` ต้องได้ตัวเลขสรุป
+
+> ⚠️ ข้อ 2 รันครั้งเดียวตอนย้ายเข้าชีตพอ — **หลังจากนั้นชีตคือของจริง** แก้ท่าที่ชีตได้เลย
+> รันซ้ำเมื่อไหร่ ท่าที่แก้ในชีตหายหมด กลับไปเป็นฉบับใน `program.js`
+> (ตั้งใจให้เป็นทางกลับตอนแก้ชีตจนพัง — ถ้าจะรัน copy ชีตเก็บไว้ก่อน)
 
 ### 🔓 เรื่องความปลอดภัย — รู้ไว้ก่อน
 ไม่มี auth/token/LockService โดยตั้งใจ (ผู้ใช้คนเดียว ไม่มี race) และ **URL `/exec` ฝังอยู่ใน
@@ -107,6 +125,7 @@ git clone https://github.com/tujas789/tj-workout.git C:\Users\tujas\tj-workout
 ```bash
 cd ~/repos/tj-workout && git pull --ff-only
 cp "/Users/tujas/Library/CloudStorage/OneDrive-ส่วนบุคคล/ออกกำลังกาย/frontend/"{index.html,style.css,instrument-panel.css,program.js,api.js,app.js,manifest.json} ~/repos/tj-workout/
+# ปกติใช้ ./sync-to-repo.sh แทน — คำสั่งนี้ไว้ดูว่าสคริปต์ทำอะไรให้
 git add -A && git commit -m "<สรุปสั้นๆ>" && git push origin main
 ```
 
@@ -116,7 +135,8 @@ git add -A && git commit -m "<สรุปสั้นๆ>" && git push origin m
 
 ## ดูตอนพัฒนา
 ```bash
-python3 -m http.server 8799 --directory "/Users/tujas/Library/CloudStorage/OneDrive-ส่วนบุคคล/ออกกำลังกาย/frontend"
+python3 -m http.server 8799 --directory frontend    # รันจาก root ของโปรเจกต์
 ```
+(`.claude/launch.json` ใช้ path แบบเดียวกันแล้ว — เดิมเป็น absolute path ของ Mac ทำให้ฝั่ง Windows รันไม่ได้)
 เปิด `http://127.0.0.1:8799` — ถ้ายังไม่ได้วาง `API_URL` แอปจะทำงานโหมด "เครื่องนี้เท่านั้น"
 (เก็บ localStorage อย่างเดียว) ใช้ลองได้ครบทุกหน้า
