@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>คู่มือใช้งาน — TJ Workout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ธีม Instrument Panel — ชุดเดียวกับตัวแอป (frontend/instrument-panel.css + style.css) */
+:root{
+  --bg:#e7e4dc; --card:#fafaf7; --card2:#f1efe6;
+  --line:#14110d; --hair:#cfcabd; --text:#14110d; --text2:#4f4a40; --mut:#8c8678;
+  --accent:#1d4ed8; --accent2:#1e40af;
+  --ok:#0e8a4f; --ok-bg:#c7e8d0; --warn-bg:#ffe9c7; --dan:#d11a2a; --dan-bg:#ffdcdc;
+  --f:"IBM Plex Sans Thai","IBM Plex Sans",system-ui,sans-serif;
+  --m:"IBM Plex Mono","IBM Plex Sans Thai",ui-monospace,monospace;
+  --w:min(100% - 32px, 46rem);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{
+  margin:0; font-family:var(--f); color:var(--text); line-height:1.7; font-size:16px;
+  background:var(--bg);
+  background-image:radial-gradient(rgba(20,17,13,.05) 1px, transparent 1.4px);
+  background-size:15px 15px; padding-bottom:60px;
+}
+.wrap{width:var(--w);margin-inline:auto}
+
+header{
+  background:var(--card); border-bottom:1.5px solid var(--line);
+  padding:2.5rem 0 1.75rem; margin-bottom:2rem;
+}
+h1{margin:.3rem 0 0;font:700 clamp(1.8rem,6vw,2.6rem)/1.2 var(--f);letter-spacing:-.02em}
+h1 .a{color:var(--accent)}
+.eyebrow{font:500 .7rem/1 var(--m);letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
+.lede{margin:.9rem 0 0;color:var(--text2)}
+
+h2{
+  margin:2.6rem 0 .2rem; font:700 1.3rem/1.35 var(--f);
+  padding-bottom:.5rem; border-bottom:2px solid var(--line);
+}
+h3{margin:1.6rem 0 .3rem;font:600 1.05rem/1.4 var(--f)}
+p{margin:.7rem 0 0}
+.mut{color:var(--mut);font-size:.9rem}
+
+.card{
+  background:var(--card); border:1.5px solid var(--line); box-shadow:4px 4px 0 var(--line);
+  padding:1.1rem 1.2rem; margin-top:1.1rem;
+}
+.card.ok{background:var(--ok-bg)}
+.card.warn{background:var(--warn-bg)}
+.card.dan{background:var(--dan-bg)}
+.card h3{margin-top:0}
+
+ul,ol{margin:.6rem 0 0;padding-left:1.3rem}
+li{margin:.3rem 0}
+code{font:500 .85em var(--m);background:var(--card2);padding:1px 5px;border:1px solid var(--hair)}
+b{font-weight:600}
+
+.scroll{overflow-x:auto;border:1.5px solid var(--line);background:var(--card);margin-top:1rem}
+table{border-collapse:collapse;width:100%;min-width:30rem;font-size:.9rem}
+th,td{text-align:left;padding:.6rem .8rem;border-bottom:1px solid var(--hair);vertical-align:top}
+thead th{font:500 .68rem/1 var(--m);letter-spacing:.1em;text-transform:uppercase;color:var(--mut);background:var(--card2);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.n{font-family:var(--m);white-space:nowrap}
+
+.steps{counter-reset:s;list-style:none;padding:0;margin-top:1rem}
+.steps li{
+  counter-increment:s; position:relative; padding:.75rem 0 .75rem 2.6rem;
+  border-bottom:1px dashed var(--hair);
+}
+.steps li:last-child{border-bottom:0}
+.steps li::before{
+  content:counter(s); position:absolute; left:0; top:.75rem;
+  width:1.8rem;height:1.8rem; display:grid;place-items:center;
+  font:600 .8rem var(--m); color:#fff; background:var(--accent);
+  border:1.5px solid var(--line);
+}
+.chip{
+  display:inline-block; font:500 .72rem var(--m); padding:.2rem .5rem;
+  border:1.5px solid var(--line); background:var(--card2); margin-right:.3rem;
+}
+.chip.blue{background:var(--accent);color:#fff;border-color:var(--accent)}
+a{color:var(--accent2)}
+footer{margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--hair);color:var(--mut);font-size:.85rem}
+@media print{ body{background:#fff} .card{box-shadow:none} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">คู่มือใช้งาน</div>
+    <h1>TJ <span class="a">Workout</span></h1>
+    <p class="lede">
+      ตารางฝึกแบบบันทึกได้ — เปิดจากมือถือ เห็นว่าวันนี้ทำอะไร ทำทีละท่า จับเวลาให้
+      แล้วเก็บลง Google Sheet เอง<br>
+      <b>เปิดที่:</b> <a href="https://tujas789.github.io/tj-workout/">tujas789.github.io/tj-workout</a>
+    </p>
+  </div>
+</header>
+
+<main class="wrap">
+
+<h2>ครั้งแรกทำอะไรบ้าง</h2>
+<ol class="steps">
+  <li><b>เปิดลิงก์ในมือถือ</b> แล้วกด <b>แชร์ → เพิ่มไปยังหน้าจอโฮม</b> จะได้ไอคอนเปิดง่าย ๆ เหมือนแอป</li>
+  <li><b>ดูป้ายมุมขวาบน</b> ถ้าขึ้น <span class="chip">ซิงก์แล้ว</span> สีเขียว = ต่อกับชีตได้แล้ว ไม่ต้องตั้งอะไรเพิ่ม</li>
+  <li><b>เริ่มที่หน้า "เช้านี้"</b> ให้คะแนนปวดของเช้าวันนี้ — เป็นตัวเลขที่สำคัญที่สุดในระบบ และใช้เวลา 10 วินาที</li>
+</ol>
+
+<h2>วันหนึ่งใช้ยังไง</h2>
+<p>มีอยู่ 3 จังหวะเท่านั้น ไม่ต้องเปิดแอปทั้งวัน</p>
+
+<div class="card">
+  <h3>ตอนตื่นนอน — แท็บ <span class="chip">เช้านี้</span></h3>
+  <p>ให้คะแนนปวด 0–10 เลือกจุดที่ปวด ใส่ชั่วโมงนอน แล้วกดบันทึก</p>
+  <p class="mut">
+    ทำไมต้องทุกเช้า: <b>คะแนนปวดตอนเช้าคือตัวชี้วัดเอ็นที่ดีที่สุดที่วัดเองได้</b>
+    ความรู้สึกตอนกำลังยกโกหกได้ แต่เช้าวันรุ่งขึ้นไม่โกหก ถ้าค่าเฉลี่ยรายเดือนเริ่มไต่ขึ้น
+    แปลว่ากล้ามเนื้อกำลังแซงเอ็น ให้ลดน้ำหนักลง 20%
+  </p>
+  <p class="mut">พอบันทึกแล้ว <b>เกจวัดความพร้อมจะติ๊กให้เอง</b> 2 ข้อจาก 3</p>
+</div>
+
+<div class="card">
+  <h3>ตอนจะฝึก — แท็บ <span class="chip">วันนี้</span></h3>
+  <p>แอปบอกเองว่าถัดไปควรทำอะไร กด <b>เริ่มเซสชัน</b> แล้วทำตามทีละท่า</p>
+  <ul>
+    <li>กด <b>ปุ่มใหญ่สีน้ำเงิน</b> เพื่อเริ่มจับเวลา หรือบันทึกเซ็ต (แล้วแต่ชนิดท่า)</li>
+    <li>ท่าที่ต้องใส่ตัวเลข จะมีช่อง <b>น้ำหนัก</b> กับ <b>ครั้ง</b> โผล่มาให้</li>
+    <li>ทำท่าไหนไม่ได้ กด <b>ข้าม →</b> ได้เลย ไม่ต้องรู้สึกผิด</li>
+    <li>ออกกลางคัน กด <b>ออก</b> — ที่บันทึกไปแล้วยังอยู่</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>หลังลงสนามแบด — แท็บ <span class="chip">วันนี้</span> เลื่อนลงล่าง</h3>
+  <p>การ์ด <b>"หลังลงสนามแบด"</b> ให้กรอก 2 อย่าง ใช้เวลา 30 วินาที</p>
+  <ul>
+    <li><b>แรงตก 0–10</b> — เกมสุดท้ายเทียบเกมแรก (0 = เหมือนเดิม, 10 = แทบไม่เหลือ)</li>
+    <li><b>ตีเหนือหัวเต็มแรงได้ถึงเกมที่เท่าไหร่</b> ก่อนเริ่มต้องออมแรง</li>
+  </ul>
+  <p class="mut">
+    ตัวที่สองคือของจริงสำหรับเป้าหมาย "ไม่มีใครสู้ long rally ได้" — ในเกมคู่มันแปลว่า
+    <b>คุณยังตบเต็มแรงได้ตอนที่คนอื่นเริ่มตบเบาลงแล้ว</b> ตัวเลขนี้จะขยับช้า
+    คาดหวังการเปลี่ยนแปลงที่วัดได้ราว 8–12 สัปดาห์
+  </p>
+  <p class="mut">กดบันทึกแล้ว <b>วันยิมจะถูกเลื่อนออกไปให้อัตโนมัติ</b> เพราะขาหนักต้องห่างวันลงสนาม 2 วัน</p>
+</div>
+
+<h2>สามแท็บ</h2>
+<div class="scroll">
+<table>
+  <thead><tr><th>แท็บ</th><th>ไว้ทำอะไร</th><th class="n">ใช้บ่อยแค่ไหน</th></tr></thead>
+  <tbody>
+    <tr><td><b>วันนี้</b></td><td>เซสชันถัดไป · เกจวัดความพร้อม · บันทึกหลังลงสนาม</td><td class="n">ทุกวันที่ฝึก</td></tr>
+    <tr><td><b>รอบนี้</b></td><td>ดูภาพรวมว่าทำอะไรไปแล้ว · เลือกทำเซสชันไหนก็ได้ · ตารางบล็อก 5 สัปดาห์</td><td class="n">สัปดาห์ละครั้ง</td></tr>
+    <tr><td><b>เช้านี้</b></td><td>คะแนนปวด · ชั่วโมงนอน · ทดสอบรายเดือน</td><td class="n">ทุกเช้า</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>ทำไมไม่มี "วันจันทร์ทำอะไร"</h2>
+<div class="card">
+  <p>
+    เพราะชีวิตจริงไม่ได้เดินตามปฏิทิน บางสัปดาห์ทำได้ 3 ครั้ง บางสัปดาห์ได้ครั้งเดียว
+    ระบบนี้จึงคิดเป็น <b>"รอบ"</b> ไม่ใช่ตารางประจำสัปดาห์
+  </p>
+  <p style="font-family:var(--m);font-size:.9rem;text-align:center;padding:.8rem;background:var(--card2);border:1.5px solid var(--line);margin-top:1rem">
+    บ้าน B → ยิม → บ้าน A → บ้าน B → …
+  </p>
+  <p>
+    ทำอันหนึ่งเสร็จ อันถัดไปคืออันต่อจากนั้น <b>จะทำวันไหนก็ได้</b>
+    แอปจำจากประวัติว่าคุณทำอะไรไปล่าสุดเมื่อไหร่ แล้วเสนออันถัดไปให้
+  </p>
+  <h3>กติการะยะห่าง 2 ข้อ</h3>
+  <ul>
+    <li><b>เซสชันเดิมห่างกันอย่างน้อย 2 วัน</b></li>
+    <li><b>วันยิมต้องห่างวันลงสนามอย่างน้อย 2 วัน</b> — ขาหนักกับแบดแย่งการฟื้นตัวกัน</li>
+  </ul>
+  <p class="mut">
+    ถ้าติดกติกา แอปจะข้ามไปเสนออันถัดไป และ<b>บอกเหตุผลว่าข้ามอะไรเพราะอะไร</b>
+    ถ้าติดหมดก็จะเสนอปั่นเบาแทน — แต่<b>ในหน้า "รอบนี้" กดทำอันไหนก็ได้เสมอ</b> แค่ถามยืนยันก่อน
+  </p>
+</div>
+
+<h3>สัญลักษณ์ในหน้า "รอบนี้"</h3>
+<div class="scroll">
+<table>
+  <thead><tr><th class="n">สัญลักษณ์</th><th>แปลว่า</th></tr></thead>
+  <tbody>
+    <tr><td class="n">▶</td><td>อันที่แอปเสนอให้ทำถัดไป</td></tr>
+    <tr><td class="n">⏸</td><td>ติดกติการะยะห่าง (มีบอกเหตุผลใต้ชื่อ)</td></tr>
+    <tr><td class="n">○</td><td>ทำได้ แต่ยังไม่ถึงคิวตามลำดับ</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>นาฬิกา 4 แบบ</h2>
+<p>นี่คือเหตุผลที่งานนี้เป็นแอปไม่ใช่กระดาษ — แต่ละชนิดท่า นาฬิกาทำงานคนละอย่าง</p>
+<div class="scroll">
+<table>
+  <thead><tr><th>ป้ายบนการ์ด</th><th>นาฬิกาทำอะไร</th><th>ตัวอย่างท่า</th></tr></thead>
+  <tbody>
+    <tr><td><b>ท่าค้าง</b></td><td>นับถอยหลังตามวินาที จบแล้วนับเวลาพักต่อ แล้วขึ้นเซ็ตถัดไปเอง</td><td>Wall sit 45 วิ</td></tr>
+    <tr><td><b>ยก</b></td><td>โชว์จังหวะ (เช่น <code>3-1-1</code>) ให้ใส่น้ำหนัก/ครั้ง กดบันทึกแล้วจับเวลาพักให้</td><td>Leg press</td></tr>
+    <tr><td><b>อินเทอร์วัล</b></td><td>สลับเร่ง/ผ่อนให้เอง นับรอบให้ ไม่ต้องจำ</td><td>ปั่นจักรยาน</td></tr>
+    <tr><td><b>จับเวลา</b></td><td>นับถอยหลังอย่างเดียว</td><td>วอร์ม · คูลดาวน์</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="mut">
+  หมดเวลาแล้วจะ<b>มีเสียงและสั่น</b> และมีเสียงเตือนล่วงหน้า 3 วินาที — ไม่ต้องจ้องจอ<br>
+  <b>จังหวะ <code>3-1-1</code> อ่านว่า:</b> ลง 3 วินาที · ค้างล่าง 1 วินาที · ขึ้น 1 วินาที
+</p>
+
+<div class="card warn">
+  <h3>เรื่องนาฬิกาที่ต้องเข้าใจให้ตรงกัน</h3>
+  <p>
+    นาฬิกาตัวนี้ <b>ไม่ได้มีไว้จับว่ายกได้นานแค่ไหนจนหมดแรง</b>
+    เพราะกล้ามเนื้อตอบสนองต่อความล้า แต่<b>เอ็นตอบสนองต่อขนาดของแรง</b>
+    ยกของเบาจนหมดแรง = กล้ามเนื้อล้าแต่เอ็นแทบไม่ได้อะไร
+  </p>
+  <p>
+    มันจึงถูกวางไว้ 4 ที่ที่ให้ผลจริง: <b>จับท่าค้าง · คุมจังหวะ · คุมความหนาแน่น · จับเวลาพัก</b><br>
+    และให้<b>หยุดเซ็ตตอนที่ยังเหลือแรงอีก 1–3 ครั้ง</b> ไม่ใช่ยกจนหมดแรง
+  </p>
+</div>
+
+<h2>แถบส้ม "ช่วงไต่ช้า"</h2>
+<div class="card">
+  <p>
+    <b>6 สัปดาห์แรก</b> นับจากเซสชันหลักครั้งแรกที่บันทึก จะมีแถบสีส้มบอกว่าเหลืออีกกี่วัน
+    พร้อมข้อความว่า <i>"ยกเบากว่าที่ทำได้ ~30% ไม่ว่าตารางข้างล่างจะบอกว่าอะไร"</i>
+  </p>
+  <p>
+    <b>มันจะน่าหงุดหงิด และนั่นคือสัญญาณว่ามันทำงาน</b> — ความรู้สึกว่า "เบาไป เสียเวลา"
+    มาจากกล้ามเนื้อที่พร้อมแล้ว ในขณะที่เอ็นยังไม่พร้อม กล้ามเนื้อที่เคยฝึกมาคืนแรงใน 6–10 สัปดาห์
+    แต่เอ็นไม่มีกลไกความจำแบบนั้น ต้องสร้างใหม่ตามอัตราของมันเอง
+  </p>
+  <p class="mut">เหตุผลเต็ม ๆ อยู่ใน <code>docs/adr/0001-slow-ramp-first-six-weeks.md</code> · พ้น 6 สัปดาห์แถบจะหายไปเอง</p>
+</div>
+
+<h2>สัปดาห์ที่ทำไม่ครบ</h2>
+<p>ไม่ต้องรู้สึกผิดและไม่ต้องเริ่มใหม่ มีทางออกวางไว้ให้แล้ว 2 ทาง</p>
+<div class="card">
+  <h3>1. ตัดจากท้ายก่อน</h3>
+  <p style="font-family:var(--m);font-size:.95rem;text-align:center;padding:.7rem;background:var(--card2);border:1.5px solid var(--line)">
+    ยิม &gt; บ้าน B &gt; บ้าน A
+  </p>
+  <p class="mut">เหลือได้แค่ครั้งเดียว → เอาวันยิม เพราะเป็นวันเดียวที่เพิ่มน้ำหนักได้จริง</p>
+
+  <h3>2. โดสขั้นต่ำ 13 นาที</h3>
+  <p>ปุ่ม <b>"เวลาไม่พอ → โดสขั้นต่ำ"</b> ในหน้าวันนี้ — มีแต่งานเอ็น ไม่มีคาร์ดิโอ ไม่มีส่วนบน</p>
+  <p class="mut">
+    ที่มีแต่งานเอ็นเพราะ <b>กล้ามเนื้อทนการหยุดหนึ่งสัปดาห์ได้สบาย แต่เอ็นไม่ทน</b>
+    เอ็นตอบสนองต่อความสม่ำเสมอมากกว่าความหนัก
+  </p>
+</div>
+
+<h2>ข้อมูลไปอยู่ไหน</h2>
+<p>ทุกอย่างเขียนลงเครื่องก่อนเสมอ แล้วค่อยส่งขึ้น Google Sheet เมื่อมีเน็ต</p>
+<div class="scroll">
+<table>
+  <thead><tr><th>ป้ายมุมขวาบน</th><th>แปลว่า</th><th>ต้องทำอะไรไหม</th></tr></thead>
+  <tbody>
+    <tr><td><span class="chip" style="background:#c7e8d0">ซิงก์แล้ว</span></td><td>ส่งขึ้นชีตครบแล้ว</td><td>ไม่ต้อง</td></tr>
+    <tr><td><span class="chip blue">รอส่ง 5</span></td><td>มี 5 แถวรออยู่ในเครื่อง</td><td>ไม่ต้อง — ส่งเองเมื่อมีเน็ต</td></tr>
+    <tr><td><span class="chip" style="background:#ffdcdc">ตั้งค่า API</span></td><td>ยังไม่ได้ต่อกับชีต</td><td>แตะป้าย แล้ววาง URL</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="mut">
+  <b>ในยิมหรือสนามที่สัญญาณไม่ดี กดบันทึกได้ตามปกติ</b> ข้อมูลไม่หาย
+  แค่ค้างเป็น "รอส่ง n" แล้วส่งเองตอนกลับมามีเน็ต — ปิดแอปไปเลยก็ได้
+</p>
+
+<h3>อยากดูกราฟ</h3>
+<p>
+  <b>เปิดชีตแล้วใช้ Insert → Chart ของ Google เอา</b> — ฟรีและดีกว่าที่จะเขียนหน้ากราฟในแอป
+  กราฟที่ควรทำ: คะแนนปวดรายวัน · น้ำหนัก Leg press/RDL รายสัปดาห์ · ผลทดสอบรายเดือน
+</p>
+<p class="mut">โครงชีตทั้ง 5 ใบอธิบายไว้ใน <code>docs/SCHEMA.md</code></p>
+
+<h2>การ์ดตั้งค่า (แตะป้ายมุมขวาบน)</h2>
+<ul>
+  <li><b>URL ของ Apps Script</b> — ปกติไม่ต้องแตะ ใช้ตอน redeploy แล้ว URL เปลี่ยน</li>
+  <li><b>ล้างประวัติในเครื่อง</b> — รีเซ็ตตัวนับ "เซสชันหลัก n/3" แล้วเริ่มรอบใหม่</li>
+</ul>
+<div class="card dan">
+  <h3>ระวัง: มีสองที่ให้ล้าง คนละชุดกัน</h3>
+  <ul>
+    <li><b>ในแอป</b> → ล้างประวัติในมือถือ (ตัวที่ใช้คำนวณว่ารอบถัดไปทำอะไร)</li>
+    <li><b>ใน Apps Script</b> → ล้างข้อมูลในชีต (ฟังก์ชัน <code>clearLogs()</code>)</li>
+  </ul>
+  <p>ล้างที่เดียวไม่พอ ถ้าล้างแค่ชีต แอปจะยังนับรอบต่อจากของเดิม · รายละเอียดใน <code>docs/SCHEMA.md</code></p>
+</div>
+
+<h2>แก้ปัญหา</h2>
+<div class="scroll">
+<table>
+  <thead><tr><th>อาการ</th><th>สาเหตุ · วิธีแก้</th></tr></thead>
+  <tbody>
+    <tr><td>ป้ายค้างที่ <b>รอส่ง n</b> นาน</td><td>ไม่มีเน็ต หรือชีตมีปัญหา — ลองเปิดแอปใหม่ตอนมีเน็ต ข้อมูลไม่หายแน่นอน</td></tr>
+    <tr><td>ป้ายขึ้น <b>ตั้งค่า API</b> ทั้งที่เคยใช้ได้</td><td>เคยกรอก URL ทับไว้แล้วผิด — แตะป้าย แล้วลบช่อง URL ให้ว่าง กดบันทึก จะกลับไปใช้ค่าในโค้ด</td></tr>
+    <tr><td>กดบันทึกแล้วขึ้น <b>เซิร์ฟเวอร์ขัดข้อง (HTTP 403)</b></td><td>สคริปต์ยังไม่ได้รับสิทธิ์ — เปิด Apps Script แล้ว Run <code>setup</code> หนึ่งครั้ง (ดู <code>docs/DEPLOY.md</code>)</td></tr>
+    <tr><td>แอปเสนอเซสชันที่เพิ่งทำไป</td><td>ประวัติในเครื่องถูกล้าง — บันทึกเซสชันถัดไปตามปกติ เดี๋ยวลำดับก็เข้าที่</td></tr>
+    <tr><td>ตัวเลขในชีตกลายเป็นวันที่</td><td>คอลัมน์ใหม่ยังไม่ถูกตั้งเป็นข้อความ — เพิ่มลง <code>TEXT_COLS</code> ใน <code>00_setup.gs</code> แล้ว Run <code>setup</code> ใหม่</td></tr>
+    <tr><td>เปิดเว็บแล้วเป็นของเก่า</td><td>มือถือ cache ไว้ — ปิดแท็บแล้วเปิดใหม่ หรือดึงหน้าลงเพื่อรีเฟรช</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>เกณฑ์ 3 ตัวที่ใช้ตัดสินทุกครั้ง</h2>
+<div class="card ok">
+  <ul>
+    <li><b>ปวดระหว่างทำ ≤ 3/10</b> → ปลอดภัย ทำต่อได้</li>
+    <li><b>ปวดที่เพิ่มขึ้นต้องหายภายใน 24 ชั่วโมง</b></li>
+    <li><b>เช้าวันรุ่งขึ้นคือตัวชี้วัดจริง</b> ไม่ใช่ความรู้สึกตอนกำลังทำ</li>
+  </ul>
+  <p>เกินเกณฑ์ → <b>ลดน้ำหนักลง 20% แต่อย่าหยุดทำ</b> เอ็นที่ถูกพักสนิทจะอ่อนแอลง ไม่ใช่ดีขึ้น</p>
+</div>
+
+<footer>
+  คู่มือนี้อธิบาย<b>วิธีใช้แอป</b> — เหตุผลเบื้องหลังตัวโปรแกรมฝึกอยู่ใน
+  <code>README.md</code> · <code>CONTEXT.md</code> · <code>docs/adr/</code><br>
+  เนื้อหาการฝึกเป็นคำแนะนำทั่วไป ไม่ใช่การรักษาทางการแพทย์
+</footer>
+
+</main>
+</body>
+</html>

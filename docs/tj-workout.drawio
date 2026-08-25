@@ -1,0 +1,245 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="runtime" name="1 · ตอนใช้งาน">
+    <mxGraphModel dx="1100" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" background="#e7e4dc" math="0" shadow="0">
+      <root>
+        <mxCell id="r0"/>
+        <mxCell id="r1" parent="r0"/>
+
+        <mxCell id="rT" value="TJ Workout — เส้นทางข้อมูลตอนใช้งานจริง" style="text;html=1;fontSize=22;fontStyle=1;fontColor=#14110d;align=left;" vertex="1" parent="r1">
+          <mxGeometry x="40" y="24" width="600" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="rS" value="ทุกอย่างเขียนลงเครื่องก่อนเสมอ แล้วค่อยส่งขึ้นชีต — ยิมกับสนามสัญญาณไม่ดี กดแล้วต้องติดทันที" style="text;html=1;fontSize=12;fontColor=#4f4a40;align=left;" vertex="1" parent="r1">
+          <mxGeometry x="40" y="52" width="700" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="gh" value="GitHub Pages&#10;&#10;index.html · app.js&#10;api.js · program.js&#10;instrument-panel.css" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fafaf7;strokeColor=#14110d;strokeWidth=2;fontSize=12;verticalAlign=top;spacingTop=8;" vertex="1" parent="r1">
+          <mxGeometry x="40" y="150" width="200" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="ghn" value="static ล้วน ไม่มี server" style="text;html=1;fontSize=10;fontColor=#8c8678;align=center;" vertex="1" parent="r1">
+          <mxGeometry x="40" y="284" width="200" height="16" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ph" value="มือถือ (เบราว์เซอร์)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f1efe6;strokeColor=#14110d;strokeWidth=2;fontSize=13;fontStyle=1;verticalAlign=top;spacingTop=8;dashed=0;" vertex="1" parent="r1">
+          <mxGeometry x="330" y="120" width="300" height="290" as="geometry"/>
+        </mxCell>
+        <mxCell id="ui" value="หน้าจอ + นาฬิกา&#10;วันนี้ · รอบนี้ · เช้านี้" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1d4ed8;strokeColor=#14110d;strokeWidth=2;fontSize=12;fontColor=#ffffff;" vertex="1" parent="r1">
+          <mxGeometry x="355" y="160" width="250" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="ls" value="localStorage&#10;&#10;คิวรอส่ง · ประวัติเซสชัน · URL" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fafaf7;strokeColor=#14110d;strokeWidth=2;fontSize=12;" vertex="1" parent="r1">
+          <mxGeometry x="355" y="250" width="250" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="lsn" value="แหล่งความจริงระหว่างวัน&#10;ปิดแอปแล้วข้อมูลไม่หาย" style="text;html=1;fontSize=10;fontColor=#8c8678;align=center;" vertex="1" parent="r1">
+          <mxGeometry x="355" y="326" width="250" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="gas" value="Apps Script  /exec" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fafaf7;strokeColor=#14110d;strokeWidth=2;fontSize=13;fontStyle=1;verticalAlign=top;spacingTop=8;" vertex="1" parent="r1">
+          <mxGeometry x="740" y="140" width="240" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="gasb" value="doGet  → ping · getProgram&#10;doPost → appendBatch&#10;&#10;ไม่มี auth · ผู้ใช้คนเดียว" style="text;html=1;fontSize=11;align=left;fontColor=#4f4a40;" vertex="1" parent="r1">
+          <mxGeometry x="756" y="172" width="220" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="sh" value="Google Sheet &quot;workout&quot;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c7e8d0;strokeColor=#14110d;strokeWidth=2;fontSize=13;fontStyle=1;verticalAlign=top;spacingTop=8;" vertex="1" parent="r1">
+          <mxGeometry x="740" y="300" width="240" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="shb" value="Program — นิยามโปรแกรม&#10;Session — เซสชันที่ทำ&#10;SetLog  — รายเซ็ต&#10;Daily   — คะแนนปวดตอนเช้า&#10;Test    — ทดสอบ + แรงตก" style="text;html=1;fontSize=11;align=left;fontColor=#0c2b18;fontFamily=Courier New;" vertex="1" parent="r1">
+          <mxGeometry x="756" y="332" width="220" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ch" value="กราฟ&#10;Insert → Chart ในชีตเอง&#10;(ไม่เขียนหน้ากราฟในแอป)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f1efe6;strokeColor=#8c8678;strokeWidth=2;dashed=1;fontSize=11;fontColor=#4f4a40;" vertex="1" parent="r1">
+          <mxGeometry x="740" y="490" width="240" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#14110d;strokeWidth=2;fontSize=11;" edge="1" parent="r1" source="gh" target="ph">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1l" value="โหลดหน้าเว็บ" style="edgeLabel;html=1;fontSize=11;labelBackgroundColor=#e7e4dc;" vertex="1" connectable="0" parent="e1">
+          <mxGeometry x="-0.1" relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#1d4ed8;strokeWidth=3;" edge="1" parent="r1" source="ui" target="ls">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2l" value="1. เขียนลงเครื่องก่อน" style="edgeLabel;html=1;fontSize=11;fontStyle=1;fontColor=#1d4ed8;labelBackgroundColor=#f1efe6;" vertex="1" connectable="0" parent="e2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#1d4ed8;strokeWidth=3;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="r1" source="ls" target="gas">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3l" value="2. sync เมื่อมีเน็ต&#10;POST appendBatch" style="edgeLabel;html=1;fontSize=11;fontStyle=1;fontColor=#1d4ed8;labelBackgroundColor=#e7e4dc;" vertex="1" connectable="0" parent="e3">
+          <mxGeometry x="-0.2" relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#14110d;strokeWidth=2;" edge="1" parent="r1" source="gas" target="sh">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4l" value="3. append" style="edgeLabel;html=1;fontSize=11;labelBackgroundColor=#e7e4dc;" vertex="1" connectable="0" parent="e4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#8c8678;strokeWidth=2;dashed=1;" edge="1" parent="r1" source="sh" target="ch">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="note1" value="⚠  ไม่ตั้ง Content-Type ตอน fetch&#10;→ body เป็น text/plain → simple request&#10;→ ไม่มี CORS preflight&#10;นี่คือกุญแจที่ทำให้คุยกับ Apps Script ได้" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe9c7;strokeColor=#14110d;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="r1">
+          <mxGeometry x="330" y="440" width="300" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="note2" value="ออฟไลน์ = ป้ายขึ้น &quot;รอส่ง n&quot;&#10;ข้อมูลไม่หาย ส่งเองตอนกลับมามีเน็ต" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fafaf7;strokeColor=#8c8678;strokeWidth=2;dashed=1;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="r1">
+          <mxGeometry x="330" y="545" width="300" height="55" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram id="deploy" name="2 · แก้โค้ด → ขึ้นเว็บ">
+    <mxGraphModel dx="1100" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" background="#e7e4dc" math="0" shadow="0">
+      <root>
+        <mxCell id="d0"/>
+        <mxCell id="d1" parent="d0"/>
+
+        <mxCell id="dT" value="แก้โค้ดแล้วเอาขึ้นใช้งานยังไง" style="text;html=1;fontSize=22;fontStyle=1;fontColor=#14110d;align=left;" vertex="1" parent="d1">
+          <mxGeometry x="40" y="24" width="600" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="dS" value="สองสายแยกกัน — หน้าเว็บไป GitHub · โค้ดหลังบ้านไป Apps Script" style="text;html=1;fontSize=12;fontColor=#4f4a40;align=left;" vertex="1" parent="d1">
+          <mxGeometry x="40" y="52" width="700" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="od" value="OneDrive — โฟลเดอร์ &quot;ออกกำลังกาย&quot;&#10;source of truth · แก้ที่นี่ที่เดียว" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1d4ed8;strokeColor=#14110d;strokeWidth=2;fontSize=13;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="d1">
+          <mxGeometry x="380" y="110" width="330" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="mac" value="🍎 Mac" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fafaf7;strokeColor=#14110d;strokeWidth=2;fontSize=12;" vertex="1" parent="d1">
+          <mxGeometry x="380" y="30" width="140" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="win" value="🪟 Windows" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fafaf7;strokeColor=#14110d;strokeWidth=2;fontSize=12;" vertex="1" parent="d1">
+          <mxGeometry x="570" y="30" width="140" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="em1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#8c8678;strokeWidth=2;dashed=1;endArrow=none;" edge="1" parent="d1" source="mac" target="od"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="em2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#8c8678;strokeWidth=2;dashed=1;endArrow=none;" edge="1" parent="d1" source="win" target="od"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="em3" value="OneDrive ซิงก์ไฟล์ให้" style="text;html=1;fontSize=10;fontColor=#8c8678;align=center;" vertex="1" parent="d1">
+          <mxGeometry x="720" y="40" width="150" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="sync" value="./sync-to-repo.sh &quot;ข้อความ commit&quot;&#10;(Windows: .ps1)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe9c7;strokeColor=#14110d;strokeWidth=2;fontSize=12;fontStyle=1;" vertex="1" parent="d1">
+          <mxGeometry x="130" y="240" width="250" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="syncn" value="git pull --ff-only ให้ก่อนเสมอ&#10;แล้วค่อย copy · commit · push" style="text;html=1;fontSize=10;fontColor=#8c8678;align=center;" vertex="1" parent="d1">
+          <mxGeometry x="130" y="303" width="250" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="repo" value="git repo (นอก OneDrive)&#10;~/repos/tj-workout" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fafaf7;strokeColor=#14110d;strokeWidth=2;fontSize=12;" vertex="1" parent="d1">
+          <mxGeometry x="130" y="370" width="250" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="ghr" value="GitHub&#10;tujas789/tj-workout" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fafaf7;strokeColor=#14110d;strokeWidth=2;fontSize=12;" vertex="1" parent="d1">
+          <mxGeometry x="130" y="470" width="250" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="pages" value="GitHub Pages&#10;tujas789.github.io/tj-workout" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c7e8d0;strokeColor=#14110d;strokeWidth=2;fontSize=12;fontStyle=1;" vertex="1" parent="d1">
+          <mxGeometry x="130" y="565" width="250" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="clasp" value="clasp push -f" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe9c7;strokeColor=#14110d;strokeWidth=2;fontSize=12;fontStyle=1;" vertex="1" parent="d1">
+          <mxGeometry x="740" y="240" width="250" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="editor" value="Apps Script editor" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fafaf7;strokeColor=#14110d;strokeWidth=2;fontSize=12;" vertex="1" parent="d1">
+          <mxGeometry x="740" y="330" width="250" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="ver" value="clasp create-version&#10;clasp update-deployment" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe9c7;strokeColor=#14110d;strokeWidth=2;fontSize=12;fontStyle=1;" vertex="1" parent="d1">
+          <mxGeometry x="740" y="420" width="250" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="exec" value="/exec (production)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c7e8d0;strokeColor=#14110d;strokeWidth=2;fontSize=12;fontStyle=1;" vertex="1" parent="d1">
+          <mxGeometry x="740" y="520" width="250" height="45" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="d_e1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#14110d;strokeWidth=2;" edge="1" parent="d1" source="od" target="sync"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d_e1l" value="frontend/ · docs/ · gas/" style="edgeLabel;html=1;fontSize=10;labelBackgroundColor=#e7e4dc;" vertex="1" connectable="0" parent="d_e1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d_e2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#14110d;strokeWidth=2;" edge="1" parent="d1" source="sync" target="repo"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d_e3" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#14110d;strokeWidth=2;" edge="1" parent="d1" source="repo" target="ghr"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d_e3l" value="git push" style="edgeLabel;html=1;fontSize=10;labelBackgroundColor=#e7e4dc;" vertex="1" connectable="0" parent="d_e3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d_e4" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#14110d;strokeWidth=2;" edge="1" parent="d1" source="ghr" target="pages"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d_e4l" value="อัตโนมัติ ~1 นาที" style="edgeLabel;html=1;fontSize=10;labelBackgroundColor=#e7e4dc;" vertex="1" connectable="0" parent="d_e4"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="d_e5" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#14110d;strokeWidth=2;" edge="1" parent="d1" source="od" target="clasp"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d_e5l" value="gas/working/*.gs" style="edgeLabel;html=1;fontSize=10;labelBackgroundColor=#e7e4dc;" vertex="1" connectable="0" parent="d_e5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d_e6" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#14110d;strokeWidth=2;" edge="1" parent="d1" source="clasp" target="editor"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d_e7" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#14110d;strokeWidth=2;" edge="1" parent="d1" source="editor" target="ver"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="d_e8" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#14110d;strokeWidth=2;" edge="1" parent="d1" source="ver" target="exec"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="w1" value="⚠  push ≠ deploy&#10;push แค่อัปโค้ดขึ้น editor&#10;/exec ยังรันเวอร์ชันเก่าจนกว่าจะ update-deployment" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffdcdc;strokeColor=#d11a2a;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="d1">
+          <mxGeometry x="740" y="600" width="300" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="w2" value="⚠  .git ห้ามอยู่ใน OneDrive&#10;OneDrive ซิงก์ .git/ ซึ่งเป็นฐานข้อมูลไบนารี&#10;ที่ git เขียนทับตลอด → repo พังเมื่อใช้ 2 เครื่อง&#10;(เคยเจอมาแล้วกับ TJ Inventory)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffdcdc;strokeColor=#d11a2a;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="d1">
+          <mxGeometry x="100" y="655" width="310" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="w3" value="⚠  แก้ css/js ต้อง bump ?v=YYYYMMDD ใน index.html&#10;ไม่งั้นมือถือโหลด js เก่าค้าง cache ปนกับ html ใหม่" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe9c7;strokeColor=#14110d;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="d1">
+          <mxGeometry x="430" y="565" width="290" height="55" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram id="cycle" name="3 · โมเดล &quot;รอบ&quot;">
+    <mxGraphModel dx="1100" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" background="#e7e4dc" math="0" shadow="0">
+      <root>
+        <mxCell id="c0"/>
+        <mxCell id="c1" parent="c0"/>
+
+        <mxCell id="cT" value="โมเดล &quot;รอบ&quot; — ไม่ผูกกับวันในปฏิทิน" style="text;html=1;fontSize=22;fontStyle=1;fontColor=#14110d;align=left;" vertex="1" parent="c1">
+          <mxGeometry x="40" y="24" width="600" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="cS" value="ทำอันหนึ่งเสร็จ อันถัดไปคืออันต่อจากนั้น จะทำวันไหนก็ได้ — สำคัญที่ลำดับกับระยะห่าง" style="text;html=1;fontSize=12;fontColor=#4f4a40;align=left;" vertex="1" parent="c1">
+          <mxGeometry x="40" y="52" width="700" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="s1" value="บ้าน B&#10;40 นาที&#10;&#10;เครื่องยนต์ + เข่า/ข้อเท้า" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fafaf7;strokeColor=#14110d;strokeWidth=2;fontSize=13;fontStyle=1;verticalAlign=top;spacingTop=10;" vertex="1" parent="c1">
+          <mxGeometry x="90" y="150" width="200" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2" value="ยิม&#10;42 นาที&#10;&#10;โหลดหนัก — ห้ามตัดทิ้ง" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1d4ed8;strokeColor=#14110d;strokeWidth=2;fontSize=13;fontStyle=1;fontColor=#ffffff;verticalAlign=top;spacingTop=10;" vertex="1" parent="c1">
+          <mxGeometry x="400" y="150" width="200" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3" value="บ้าน A&#10;37 นาที&#10;&#10;ส่วนบน + ข้อศอก/ไหล่" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fafaf7;strokeColor=#14110d;strokeWidth=2;fontSize=13;fontStyle=1;verticalAlign=top;spacingTop=10;" vertex="1" parent="c1">
+          <mxGeometry x="710" y="150" width="200" height="110" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="c_e1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#1d4ed8;strokeWidth=3;" edge="1" parent="c1" source="s1" target="s2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="c_e2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#1d4ed8;strokeWidth=3;" edge="1" parent="c1" source="s2" target="s3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="c_e3" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#1d4ed8;strokeWidth=3;exitX=0.5;exitY=0;entryX=0.5;entryY=0;" edge="1" parent="c1" source="s3" target="s1">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="810" y="105"/><mxPoint x="190" y="105"/></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="c_e3l" value="วนกลับ" style="edgeLabel;html=1;fontSize=11;fontColor=#1d4ed8;labelBackgroundColor=#e7e4dc;" vertex="1" connectable="0" parent="c_e3"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="rule" value="กติการะยะห่าง" style="text;html=1;fontSize=15;fontStyle=1;fontColor=#14110d;align=left;" vertex="1" parent="c1">
+          <mxGeometry x="90" y="310" width="300" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_a" value="เซสชันเดิม ต้องห่างกัน ≥ 2 วัน" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fafaf7;strokeColor=#14110d;strokeWidth=2;fontSize=12;" vertex="1" parent="c1">
+          <mxGeometry x="90" y="345" width="290" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_b" value="วันยิม ต้องห่างวันทดสอบ ≥ 2 วัน&#10;(ขาหนักกับแบดแย่งการฟื้นตัวกัน)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe9c7;strokeColor=#14110d;strokeWidth=2;fontSize=12;" vertex="1" parent="c1">
+          <mxGeometry x="90" y="400" width="290" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_c" value="ฝั่ง &quot;หลัง&quot; วันทดสอบ แอปบังคับได้&#10;ฝั่ง &quot;ก่อน&quot; ทำได้แค่เตือน — แอปรู้ไม่ได้ว่าจะลงสนามวันไหน" style="text;html=1;fontSize=10;fontColor=#8c8678;align=left;" vertex="1" parent="c1">
+          <mxGeometry x="90" y="460" width="300" height="34" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="test" value="วันทดสอบ (แบด)&#10;&#10;อยู่นอกวง — บันทึกแยกด้วยการ์ด&#10;&quot;หลังลงสนามแบด&quot;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c7e8d0;strokeColor=#14110d;strokeWidth=2;fontSize=13;fontStyle=1;verticalAlign=top;spacingTop=10;" vertex="1" parent="c1">
+          <mxGeometry x="460" y="330" width="230" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_e4" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#d11a2a;strokeWidth=2;dashed=1;exitX=0;exitY=0.5;" edge="1" parent="c1" source="test" target="r_b"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="c_e4l" value="บันทึกแล้ว&#10;เลื่อนวันยิมให้เอง" style="edgeLabel;html=1;fontSize=10;fontColor=#d11a2a;labelBackgroundColor=#e7e4dc;" vertex="1" connectable="0" parent="c_e4"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="fall" value="ติดกติกาหมด → เสนอ &quot;ปั่นเบา 20 นาที&quot;&#10;พร้อมบอกว่าข้ามอะไรเพราะอะไร" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f1efe6;strokeColor=#8c8678;strokeWidth=2;dashed=1;fontSize=12;" vertex="1" parent="c1">
+          <mxGeometry x="740" y="330" width="290" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="short" value="เวลาไม่พอ&#10;&#10;ตัดจากท้ายก่อน:  ยิม &gt; บ้าน B &gt; บ้าน A&#10;เหลือน้อยจริง ๆ → โดสขั้นต่ำ 13 นาที (งานเอ็นล้วน)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fafaf7;strokeColor=#14110d;strokeWidth=2;fontSize=12;verticalAlign=top;spacingTop=10;" vertex="1" parent="c1">
+          <mxGeometry x="740" y="405" width="290" height="90" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ramp" value="ช่วงไต่ช้า — 6 สัปดาห์แรก (ADR-0001)" style="text;html=1;fontSize=15;fontStyle=1;fontColor=#14110d;align=left;" vertex="1" parent="c1">
+          <mxGeometry x="90" y="530" width="500" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="rampb" value="นับจากเซสชันหลักครั้งแรกที่บันทึก → ยกเบากว่าที่ทำได้ ~30% ไม่ว่าตารางบล็อกจะบอกว่าอะไร&#10;&#10;เหตุผล: กล้ามเนื้อที่เคยฝึกแล้วคืนแรงใน 6–10 สัปดาห์ แต่เอ็นไม่มีกลไกความจำแบบนั้น&#10;ช่องว่างกล้ามเนื้อ–เอ็นจะเปิดกว้างที่สุดในเดือนที่ 2–3 ซึ่งเป็นช่วงที่ร่างกาย &quot;รู้สึกพร้อม&quot; ที่สุดพอดี" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe9c7;strokeColor=#14110d;strokeWidth=2;fontSize=12;align=left;spacingLeft=12;verticalAlign=top;spacingTop=10;" vertex="1" parent="c1">
+          <mxGeometry x="90" y="565" width="940" height="100" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

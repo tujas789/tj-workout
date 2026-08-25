@@ -15,6 +15,8 @@
 | [docs/DEPLOY.md](docs/DEPLOY.md) | วิธี deploy ทั้งฝั่งชีตและ GitHub Pages |
 | [CONTEXT.md](CONTEXT.md) | คำศัพท์ที่ตกลงความหมายกันแล้ว |
 | [docs/adr/](docs/adr) | การตัดสินใจที่ย้อนกลับยาก |
+| [docs/user-guide.html](docs/user-guide.html) | **คู่มือใช้งาน** — เปิดในเบราว์เซอร์ ([ออนไลน์](https://tujas789.github.io/tj-workout/docs/user-guide.html)) |
+| [docs/tj-workout.drawio](docs/tj-workout.drawio) | ไดอะแกรม 3 หน้า — เปิดที่ [draw.io](https://app.diagrams.net/) หรือ VS Code |
 
 ## แก้โค้ดแล้วเอาขึ้นเว็บยังไง
 ไฟล์ทำงานอยู่ใน OneDrive (ซิงก์ Mac ↔ Windows) · git repo อยู่**นอก** OneDrive (ซิงก์ผ่าน GitHub)

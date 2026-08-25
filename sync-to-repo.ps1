@@ -27,7 +27,7 @@ Write-Host "→ copy ไฟล์"
   ForEach-Object { Copy-Item "$SRC\frontend\$_" $REPO -Force }
 
 New-Item -ItemType Directory -Force -Path "$REPO\docs\adr","$REPO\gas\working" | Out-Null
-Copy-Item "$SRC\docs\*.md"                    "$REPO\docs\"        -Force
+Copy-Item "$SRC\docs\*.md","$SRC\docs\*.html","$SRC\docs\*.drawio" "$REPO\docs\" -Force
 Copy-Item "$SRC\docs\adr\*.md"                "$REPO\docs\adr\"    -Force
 Copy-Item "$SRC\gas\working\*.gs"             "$REPO\gas\working\" -Force
 Copy-Item "$SRC\gas\working\appsscript.json"  "$REPO\gas\working\" -Force

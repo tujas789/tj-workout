@@ -21,7 +21,7 @@ echo "→ copy ไฟล์"
 # frontend อยู่ที่ root ของ repo เพราะ GitHub Pages เสิร์ฟจาก root เท่านั้น
 cp "$SRC/frontend/"{index.html,style.css,instrument-panel.css,program.js,api.js,app.js,manifest.json} "$REPO/"
 mkdir -p "$REPO/docs/adr" "$REPO/gas/working"
-cp "$SRC/docs/"*.md            "$REPO/docs/"
+cp "$SRC/docs/"*.md "$SRC/docs/"*.html "$SRC/docs/"*.drawio "$REPO/docs/"
 cp "$SRC/docs/adr/"*.md        "$REPO/docs/adr/"
 cp "$SRC/gas/working/"*.gs     "$REPO/gas/working/"
 cp "$SRC/gas/working/appsscript.json" "$SRC/gas/working/.clasp.json" "$REPO/gas/working/"
