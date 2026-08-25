@@ -7,9 +7,10 @@
 - **scriptId:** `1TD8fMzsNHlp9zZBj1CrC8XopZJUbAHsBBAWd9RHG0O0HFMwfDwKJjCWJ` (container-bound)
 - **Web App `/exec`:**
   `https://script.google.com/macros/s/AKfycbzcxFZYCXG2RNeqG6MteHEdPhQr5W7HU0JBW7HXGqS8T_9jVhq3065cipCOMV8Zkj6Z/exec`
-  Execute as: **Me** · Access: **Anyone** · deploy ล่าสุด **v8 (2026-08-25)**
-  v8 = **ถอด `?action=progress` ออก** (read API สาธารณะที่ตอบสรุปสุขภาพ — ดู `docs/SCOPE.md`)
-  + `seedProgram()` ไม่เขียนทับใบที่มีข้อมูลแล้ว · เหลือ action แค่ `ping` / `getProgram`
+  Execute as: **Me** · Access: **Anyone** · deploy ล่าสุด **v9 (2026-08-25)**
+  v9 = คืน `?action=progress` ตามที่เจ้าของสั่ง (ดู `docs/SCOPE.md` ก่อนคิดถอดอีก)
+  + แก้บั๊กนับเซสชันเกินจริง · `seedProgram()` ไม่เขียนทับใบที่มีข้อมูลแล้ว
+  action ที่มี: `ping` · `getProgram` · `progress`
   ✅ Run ครบแล้วทั้ง `setup()` · `seedProgram()` (25 แถว) · `buildDashboard()`
   ⚠️ ทุกครั้งที่ deploy อัปเดตเลขเวอร์ชันบรรทัดนี้ให้ตรง (เช็คด้วย `clasp list-deployments`)
 
@@ -55,7 +56,7 @@ clasp open-script
 | 3 | `buildDashboard()` | สร้างชีต `สรุป` + กราฟ 4 อัน | ได้ (ลบชีตเดิมแล้วสร้างใหม่) |
 
 เช็คผลที่ **Execution log** · แล้วทดสอบจากเบราว์เซอร์:
-`…/exec?action=getProgram` ต้องได้ 25 แถว · `…/exec?action=progress` ต้องได้ `ไม่รู้จัก action`
+`…/exec?action=getProgram` ต้องได้ 25 แถว · `…/exec?action=progress` ต้องได้ตัวเลขสรุป
 
 > ข้อ 2 รันครั้งเดียวตอนย้ายเข้าชีตพอ — **หลังจากนั้นชีตคือของจริง** แก้ท่าที่ชีตได้เลย
 > รันซ้ำจะ throw ไม่เขียนทับให้ · อยากคืนค่าเป็นฉบับในโค้ดจริง ๆ ต้อง Run

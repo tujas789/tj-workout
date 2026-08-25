@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="instrument-panel.css?v=20260825j">
-<link rel="stylesheet" href="style.css?v=20260825j">
+<link rel="stylesheet" href="instrument-panel.css?v=20260825k">
+<link rel="stylesheet" href="style.css?v=20260825k">
 </head>
 <body class="ip-page">
 
@@ -26,6 +26,7 @@
     <button class="tab is-on" data-view="today">วันนี้</button>
     <button class="tab" data-view="cycle">รอบนี้</button>
     <button class="tab" data-view="morning">เช้านี้</button>
+    <button class="tab" data-view="prog">ก้าวหน้า</button>
   </nav>
 </header>
 
@@ -151,6 +152,39 @@
     </div>
   </section>
 
+  <!-- ══════════ ก้าวหน้า ══════════ -->
+  <section id="v-prog" class="view">
+    <div class="ip-card">
+      <div class="ip-label">28 วันล่าสุด เทียบ 28 วันก่อนหน้า</div>
+      <p class="hint">
+        ตัวเลขไว้ดูเร็ว ๆ ข้างสนาม — <b>เส้นกราฟจริงอยู่ในชีต</b> แท็บ “สรุป”
+        ซูมได้ ย้อนหลังได้ไม่จำกัด
+      </p>
+      <div id="progList" style="margin-top:12px"></div>
+      <p class="pg-warn" id="progWarn" hidden></p>
+      <p class="hint" id="progAt"></p>
+      <button class="ip-btn ip-btn--ghost ip-btn--sm ip-btn--block" id="btnProgReload"
+              style="margin-top:10px">โหลดใหม่</button>
+    </div>
+
+    <div class="ip-card">
+      <div class="ip-label">ผลทดสอบ</div>
+      <div id="progTests"></div>
+      <p class="hint" style="margin-top:10px">
+        ทดสอบเดือนละครั้ง — บันทึกที่แท็บ “เช้านี้”
+      </p>
+    </div>
+
+    <div class="ip-card">
+      <div class="ip-label">น้ำหนักสูงสุดต่อท่า</div>
+      <div id="progLifts"></div>
+      <p class="hint" style="margin-top:10px">
+        ขึ้นเรื่อย ๆ เป็นเรื่องดี <b>แต่ห้ามเร่ง</b> — ถ้าคะแนนปวดตอนเช้าขึ้นตาม
+        แปลว่าเอ็นตามไม่ทัน ให้ลดโหลด 20% (ADR-0001)
+      </p>
+    </div>
+  </section>
+
   <!-- ══════════ ตัวรันเซสชัน (เต็มจอ) ══════════ -->
   <section id="v-run" class="view view--full">
     <div class="run-top">
@@ -198,8 +232,8 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="program.js?v=20260825j"></script>
-<script src="api.js?v=20260825j"></script>
-<script src="app.js?v=20260825j"></script>
+<script src="program.js?v=20260825k"></script>
+<script src="api.js?v=20260825k"></script>
+<script src="app.js?v=20260825k"></script>
 </body>
 </html>

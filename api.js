@@ -46,7 +46,6 @@ function setApiUrl(u) {
 
 /* คิวแถวที่ยังไม่ได้ sync — ทุกการบันทึกลงคิวก่อนเสมอ แล้วค่อยส่ง */
 API_URL = LS.get('apiUrl', '') || DEFAULT_API_URL; NO_SERVER = !API_URL;
-LS.removePrefix('progress');           // ฟีเจอร์ถูกถอดออก — เก็บกวาดแคชเก่าทิ้ง
 let QUEUE = LS.get('queue', []);
 const queueSave = () => LS.set('queue', QUEUE);
 
@@ -159,6 +158,21 @@ function loadProgram() {
       return true;
     })
     .catch(() => false);                               // ออฟไลน์ — ของเดิมใช้ได้อยู่แล้ว
+}
+
+/* ═══════════════ ความก้าวหน้า (progress) ═══════════════
+   ตัวเลขสรุปคิดมาจากชีตแล้ว — แอปแค่วาด
+   แคชคำตอบล่าสุดไว้ เปิดตอนไม่มีเน็ตก็ยังเห็นของเมื่อวาน (บอกวันที่กำกับ)   */
+function cachedProgress() { return LS.get('progress', null); }
+
+function loadProgress() {
+  if (NO_SERVER) return Promise.reject(new Error('ยังไม่ได้ตั้ง API_URL'));
+  return apiGet('progress').then(res => {
+    if (!res || !res.ok) throw new Error(res && res.error ? res.error : 'ตอบกลับผิดรูปแบบ');
+    res.localAt = todayISO() + ' ' + nowHM();
+    LS.set('progress', res);
+    return res;
+  });
 }
 
 /* ═══════════════ ประวัติในเครื่อง — ใช้คำนวณว่าวันนี้ควรทำอะไร ═══════════════ */
