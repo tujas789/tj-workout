@@ -47,6 +47,7 @@ const queueSave = () => LS.set('queue', QUEUE);
 function enqueue(sheet, row) {
   QUEUE.push({ id: 'q' + Date.now() + Math.random().toString(36).slice(2, 6), sheet, row });
   queueSave();
+  renderSyncBadge();   // ให้ป้ายบอก "รอส่ง n" ทันที ไม่ต้องรอ sync จบ
   syncSoon();
   return QUEUE.length;
 }
