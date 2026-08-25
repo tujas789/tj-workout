@@ -45,9 +45,25 @@ $('tabs').addEventListener('click', e => {
 $('syncBadge').addEventListener('click', () => {
   const c = $('setupCard');
   c.hidden = !c.hidden;
-  if (!c.hidden) { $('inApiUrl').value = API_URL || ''; $('apiStatus').textContent = ''; window.scrollTo(0, 0); }
+  if (!c.hidden) { $('inApiUrl').value = API_URL || ''; $('apiStatus').textContent = ''; renderSetup(); window.scrollTo(0, 0); }
 });
 $('btnCloseApi').addEventListener('click', () => { $('setupCard').hidden = true; });
+$('btnClearHist').addEventListener('click', () => {
+  if (!confirm('ล้างประวัติในเครื่องทั้งหมด ' + HIST.length + ' รายการ?\n\n' +
+               'รอบจะเริ่มใหม่จากบ้าน B · แถวในชีตไม่ถูกลบ')) return;
+  HIST = []; LS.set('hist', []);
+  Object.keys(localStorage).filter(k => k.indexOf('tw_ready:') === 0).forEach(k => localStorage.removeItem(k));
+  ready = {};
+  renderToday(); renderReady(); renderCycle(); renderSetup();
+  toast('ล้างแล้ว — เริ่มรอบใหม่');
+});
+function renderSetup() {
+  const last = HIST[HIST.length - 1];
+  $('histInfo').textContent = HIST.length
+    ? HIST.length + ' รายการ · ล่าสุด ' + labelOf(last.key) + ' ' +
+      (daysSince(last.d) === 0 ? 'วันนี้' : daysSince(last.d) + ' วันก่อน')
+    : 'ยังไม่มีประวัติ — รอบจะเริ่มที่บ้าน B';
+}
 $('btnSaveApi').addEventListener('click', () => {
   const u = $('inApiUrl').value.trim();
   if (u && !/^https:\/\/script\.google\.com\/macros\/s\/.+\/exec$/.test(u))

@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="instrument-panel.css?v=20260825c">
-<link rel="stylesheet" href="style.css?v=20260825c">
+<link rel="stylesheet" href="instrument-panel.css?v=20260825d">
+<link rel="stylesheet" href="style.css?v=20260825d">
 </head>
 <body class="ip-page">
 
@@ -34,8 +34,8 @@
   <div class="ip-card" id="setupCard" hidden>
     <div class="ip-label">URL ของ Apps Script</div>
     <p class="hint">
-      เก็บไว้ในเครื่องนี้เท่านั้น ไม่ได้อยู่ในโค้ดบน GitHub — ต้องกรอกครั้งเดียวต่อเครื่อง
-      (หาได้จาก <code>docs/DEPLOY.md</code>)
+      ปกติไม่ต้องแตะ — ค่าตั้งต้นฝังอยู่ในโค้ดแล้ว
+      ใช้ช่องนี้ตอน redeploy แล้ว URL เปลี่ยน จะได้ไม่ต้อง push ใหม่ (ค่าที่กรอกจะเก็บทับในเครื่องนี้)
     </p>
     <input class="ip-input ip-mono" id="inApiUrl" type="url" inputmode="url"
            autocapitalize="off" autocorrect="off" spellcheck="false"
@@ -45,6 +45,16 @@
       <button class="ip-btn ip-btn--ghost ip-btn--sm" id="btnCloseApi">ปิด</button>
     </div>
     <p class="hint" id="apiStatus"></p>
+
+    <hr class="ip-divider">
+    <div class="ip-label">ประวัติในเครื่อง</div>
+    <p class="hint" id="histInfo"></p>
+    <p class="hint">
+      ใช้คำนวณว่ารอบถัดไปควรทำอะไร — <b>คนละชุดกับข้อมูลในชีต</b>
+      ล้างอันนี้ไม่ได้ลบแถวในชีต และไม่ทิ้งแถวที่ยังรอส่ง
+    </p>
+    <button class="ip-btn ip-btn--ghost ip-btn--sm ip-btn--block" id="btnClearHist"
+            style="margin-top:8px">ล้างประวัติในเครื่อง (เริ่มรอบใหม่)</button>
   </div>
 
   <!-- ══════════ วันนี้ ══════════ -->
@@ -165,8 +175,8 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="program.js?v=20260825c"></script>
-<script src="api.js?v=20260825c"></script>
-<script src="app.js?v=20260825c"></script>
+<script src="program.js?v=20260825d"></script>
+<script src="api.js?v=20260825d"></script>
+<script src="app.js?v=20260825d"></script>
 </body>
 </html>
