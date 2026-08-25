@@ -1,0 +1,137 @@
+/* ============================================================================
+   INSTRUMENT PANEL — Neo-Brutalist theme kit (portable)
+   ----------------------------------------------------------------------------
+   สไตล์: นีโอบรูทัลลิสต์ + อุตสาหกรรม (กระดาษ + ขอบหมึกเหลี่ยม + เงาแข็ง + ส้ม)
+   ที่มา: สกัดจากธีมแอป TJ Inventory (T-035) ให้พกพาข้ามโปรเจกต์ได้
+
+   วิธีใช้:
+     1. <link rel="stylesheet" href="instrument-panel.css">
+     2. โหลดฟอนต์ (ดู README) — IBM Plex Mono + IBM Plex Sans Thai
+     3. ใส่ class ขึ้นต้น .ip-* กับ element (ดู demo.html)
+
+   เปลี่ยนคาแรกเตอร์ทั้งธีม: แก้ --ip-accent ค่าเดียว (ดู "RECOLOR" ล่าง)
+   ทุก class ขึ้นต้น ip- เพื่อกันชนกับ CSS เดิมของโปรเจกต์ที่เอาไปวาง
+   ============================================================================ */
+
+:root{
+  /* ---- พื้นผิว (surfaces) ---- */
+  --ip-bg:#e7e4dc;        /* กระดาษครีม — พื้นหลังหน้า */
+  --ip-card:#fafaf7;      /* การ์ดขาวนวล */
+  --ip-card-2:#f1efe6;    /* การ์ดชั้นรอง / สถานะ active เบาๆ */
+
+  /* ---- หมึก (ink = ขอบ + เงา + ตัวอักษร) ---- */
+  --ip-line:#14110d;      /* หมึกดำ: ขอบหนา + เงาแข็ง */
+  --ip-hair:#cfcabd;      /* เส้นบางๆ / ตัวคั่น */
+  --ip-text:#14110d;      /* ตัวอักษรหลัก */
+  --ip-text-2:#4f4a40;    /* ตัวอักษรรอง */
+  --ip-mut:#8c8678;       /* ตัวอักษรจาง / label */
+
+  /* ---- สีพระเอก + สถานะ ---- */
+  --ip-accent:#ff4f00;    /* ★ ส้ม — แก้ค่านี้ค่าเดียว = เปลี่ยนทั้งธีม */
+  --ip-accent-2:#e64700;  /* ส้มเข้ม (ตอนกด) */
+  --ip-ok:#0e8a4f;        /* เขียว = สำเร็จ */
+  --ip-ok-screen:#c7e8d0; /* เขียวจอเรือง (พื้น toast สำเร็จ) */
+  --ip-ok-ink:#0c2b18;
+  --ip-danger:#d11a2a;    /* แดง = อันตราย/ผิดพลาด */
+
+  /* ---- ค่าโครงสร้าง (ปรับความหนา/ความลึกได้ที่นี่) ---- */
+  --ip-border:1.5px;      /* ความหนาขอบ */
+  --ip-shadow:4px;        /* ระยะเงา offset */
+  --ip-radius:0;          /* เหลี่ยมคม = 0 (เพิ่มได้ถ้าอยากมนนิด) */
+
+  /* ---- ฟอนต์ ---- */
+  --ip-font:"IBM Plex Sans Thai","IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --ip-mono:"IBM Plex Mono","IBM Plex Sans Thai",ui-monospace,monospace;
+}
+
+/* ====== RECOLOR: ตัวอย่าง preset สี — ก๊อปไปวางทับ :root แค่บรรทัด accent ======
+   น้ำเงิน:  --ip-accent:#1d4ed8; --ip-accent-2:#1e40af;
+   เขียว:    --ip-accent:#0e8a4f; --ip-accent-2:#0b6e3f;
+   ม่วง:     --ip-accent:#7c3aed; --ip-accent-2:#6d28d9;
+   ชมพู:     --ip-accent:#db2777; --ip-accent-2:#be185d;
+   ดำมินิมอล:--ip-accent:#14110d; --ip-accent-2:#000;
+   ================================================================== */
+
+/* ---------- พื้นหน้า + dot-grid texture ---------- */
+.ip-page{
+  margin:0;
+  background:var(--ip-bg);
+  background-image:radial-gradient(rgba(20,17,13,.05) 1px, transparent 1.4px);
+  background-size:15px 15px;
+  color:var(--ip-text);
+  font-family:var(--ip-font);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.5;
+}
+.ip-page *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+/* ---------- การ์ด ---------- */
+.ip-card{
+  background:var(--ip-card);
+  border:var(--ip-border) solid var(--ip-line);
+  border-radius:var(--ip-radius);
+  padding:16px;
+  box-shadow:var(--ip-shadow) var(--ip-shadow) 0 var(--ip-line);
+}
+
+/* ---------- ปุ่ม ---------- */
+.ip-btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  border:var(--ip-border) solid var(--ip-line);
+  border-radius:var(--ip-radius);
+  padding:13px 16px;
+  font-family:var(--ip-mono); font-size:14px; font-weight:700; letter-spacing:.3px;
+  cursor:pointer; color:#fff; background:var(--ip-accent);
+  box-shadow:3px 3px 0 var(--ip-line);
+  transition:.1s;
+}
+.ip-btn:active{ background:var(--ip-accent-2); transform:translate(3px,3px); box-shadow:none; }
+.ip-btn--ghost{ background:var(--ip-card); color:var(--ip-text); }
+.ip-btn--ghost:active{ background:var(--ip-card-2); }
+.ip-btn--block{ width:100%; }
+.ip-btn--sm{ padding:8px 12px; font-size:12px; box-shadow:2px 2px 0 var(--ip-line); }
+.ip-btn--sm:active{ transform:translate(2px,2px); box-shadow:none; }
+.ip-btn:disabled{ opacity:.5; cursor:default; }
+
+/* ---------- ฟอร์ม ---------- */
+.ip-label{
+  display:block; margin:12px 0 4px;
+  font-family:var(--ip-mono); font-size:11px; letter-spacing:1px; text-transform:uppercase;
+  color:var(--ip-mut);
+}
+.ip-input{
+  width:100%; padding:12px;
+  border:var(--ip-border) solid var(--ip-line); border-radius:var(--ip-radius);
+  background:#fff; color:var(--ip-text); font-size:16px; font-family:inherit;
+}
+.ip-input::placeholder{ color:var(--ip-mut); }
+.ip-input:focus{ outline:none; border-color:var(--ip-accent); }
+/* ช่องเด่น (เช่น ช่องสแกน/ค้นหาหลัก) — ตัวใหญ่ mono กลาง */
+.ip-input--hero{
+  font-size:22px; font-weight:700; letter-spacing:1px; text-align:center;
+  font-family:var(--ip-mono); border-color:var(--ip-accent); padding:16px;
+}
+.ip-input--hero::placeholder{ font-family:var(--ip-font); font-size:15px; font-weight:500; letter-spacing:0; }
+
+/* ---------- badge / chip / tag ---------- */
+.ip-badge{
+  display:inline-block; padding:3px 9px;
+  font-family:var(--ip-mono); font-size:11px; font-weight:700; letter-spacing:.5px;
+  border:var(--ip-border) solid var(--ip-line); border-radius:var(--ip-radius);
+  white-space:nowrap; color:#fff; background:var(--ip-line);
+}
+.ip-badge--accent{ background:var(--ip-accent); border-color:var(--ip-accent); }
+.ip-badge--ok{ background:var(--ip-ok); border-color:var(--ip-ok); }
+.ip-badge--danger{ background:var(--ip-danger); border-color:var(--ip-danger); }
+
+/* ---------- focus-visible (a11y) ---------- */
+.ip-page :focus-visible{ outline:2px solid var(--ip-accent); outline-offset:2px; }
+
+/* ---------- helper ---------- */
+.ip-mono{ font-family:var(--ip-mono); }
+.ip-divider{ border:none; border-top:1px dashed var(--ip-hair); margin:14px 0; }
+.ip-screw{ /* น็อตมุม — ใส่ใน element ที่ position:relative เพื่อความเป็น "เครื่องมือ" */
+  position:absolute; width:9px; height:9px; border-radius:50%;
+  background:radial-gradient(circle at 38% 34%, #fbfaf6, #b3ad9e 78%);
+  box-shadow:inset 0 0 0 .8px #6f6a5c, 0 .5px 0 #fff8;
+}

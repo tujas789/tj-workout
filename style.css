@@ -1,0 +1,168 @@
+/* style.css — ชั้นบนของ instrument-panel.css (ต้อง link ทีหลังเสมอ)
+   ★ เปลี่ยนคาแรกเตอร์ทั้งแอป: แก้ --ip-accent ค่าเดียว                       */
+
+:root{
+  --ip-accent:#1d4ed8;    /* น้ำเงิน — แยกตัวจากส้มของ TJ Inventory */
+  --ip-accent-2:#1e40af;
+  --wrap:min(100% - 24px, 34rem);
+}
+
+/* ───────── header ───────── */
+.hd{
+  position:sticky; top:0; z-index:20;
+  background:var(--ip-card);
+  border-bottom:var(--ip-border) solid var(--ip-line);
+  padding:10px 12px 0;
+}
+.hd-row{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.hd-date{ font-size:13px; color:var(--ip-text-2); font-weight:500; }
+
+.tabs{ display:flex; gap:6px; margin-top:8px; }
+.tab{
+  flex:1; padding:9px 4px; font:600 13px/1 var(--ip-font);
+  background:var(--ip-card-2); color:var(--ip-text-2);
+  border:var(--ip-border) solid var(--ip-line); border-bottom:none;
+  border-radius:0; cursor:pointer;
+}
+.tab.is-on{ background:var(--ip-accent); color:#fff; border-color:var(--ip-line); }
+
+/* ───────── layout ───────── */
+.wrap{ width:var(--wrap); margin:16px auto 40px; display:flex; flex-direction:column; gap:14px; }
+.view{ display:none; flex-direction:column; gap:14px; }
+.view.is-on{ display:flex; }
+.hint{ margin:6px 0 0; font-size:13px; line-height:1.6; color:var(--ip-mut); }
+.hint code{ font:500 12px var(--ip-mono); background:var(--ip-card-2); padding:1px 4px; }
+button.ip-badge{ cursor:pointer; font-family:var(--ip-mono); }
+.setup-btns{ display:flex; gap:8px; margin-top:10px; }
+.setup-btns .ip-btn{ flex:1; }
+
+/* ───────── การ์ดเซสชันวันนี้ ───────── */
+.sess-title{ margin:6px 0 0; font:700 22px/1.3 var(--ip-font); }
+.sess-why{ margin:8px 0 0; font-size:13.5px; line-height:1.65; color:var(--ip-text-2); }
+.sess-meta{ margin-top:10px; font-size:12px; color:var(--ip-mut); letter-spacing:.04em; }
+
+/* ───────── เกจวัดความพร้อม ───────── */
+.ready-item{
+  display:flex; align-items:center; gap:10px; padding:10px 0;
+  border-bottom:1px dashed var(--ip-hair); cursor:pointer;
+}
+.ready-item:last-of-type{ border-bottom:none; }
+.ready-box{
+  width:24px; height:24px; flex:none;
+  border:var(--ip-border) solid var(--ip-line); background:var(--ip-card);
+  display:grid; place-items:center; font:700 14px var(--ip-mono); color:#fff;
+}
+.ready-item.on .ready-box{ background:var(--ip-ok); }
+.ready-item span{ font-size:14px; }
+.ready-verdict{
+  margin-top:10px; padding:10px; text-align:center; font-size:13px; font-weight:600;
+  background:var(--ip-card-2); border:var(--ip-border) solid var(--ip-line);
+}
+.ready-verdict.ok{ background:var(--ip-ok-screen); color:var(--ip-ok-ink); }
+.ready-verdict.warn{ background:#ffe9c7; }
+.ready-verdict.no{ background:#ffdcdc; }
+
+/* ───────── สัปดาห์ ───────── */
+.wk-row{
+  display:grid; grid-template-columns:2.6rem 1fr auto; gap:10px; align-items:center;
+  padding:11px 0; border-bottom:1px dashed var(--ip-hair); cursor:pointer; text-align:left;
+  background:none; border-left:none; border-right:none; border-top:none; width:100%;
+}
+.wk-row:last-child{ border-bottom:none; }
+.wk-dow{ font:700 15px var(--ip-mono); color:var(--ip-accent); }
+.wk-lbl{ font-size:14px; line-height:1.45; }
+.wk-min{ font:500 12px var(--ip-mono); color:var(--ip-mut); white-space:nowrap; }
+.wk-row.is-today{ background:var(--ip-card-2); }
+.wk-row.is-today .wk-lbl{ font-weight:700; }
+
+.blk-row{
+  display:grid; grid-template-columns:3.4rem 5.5rem 1fr; gap:8px;
+  padding:8px 0; border-bottom:1px dashed var(--ip-hair); font-size:12.5px;
+}
+.blk-row:last-child{ border-bottom:none; }
+.blk-row span:first-child{ font-family:var(--ip-mono); }
+
+/* ───────── คะแนนปวด ───────── */
+.scale{ display:grid; grid-template-columns:repeat(6,1fr); gap:6px; margin-top:10px; }
+.scale button{
+  padding:12px 0; font:700 15px var(--ip-mono);
+  background:var(--ip-card); color:var(--ip-text);
+  border:var(--ip-border) solid var(--ip-line); box-shadow:2px 2px 0 var(--ip-line);
+  border-radius:0; cursor:pointer;
+}
+.scale button:active{ transform:translate(2px,2px); box-shadow:none; }
+.scale button.on{ background:var(--ip-accent); color:#fff; }
+.scale button.on[data-v="4"],.scale button.on[data-v="5"],
+.scale button.on[data-v="6"],.scale button.on[data-v="7"]{ background:#d98a2b; }
+.scale button.on[data-v="8"],.scale button.on[data-v="9"],
+.scale button.on[data-v="10"]{ background:var(--ip-danger); }
+
+.chips{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+.chip{
+  padding:7px 11px; font:500 12.5px var(--ip-font);
+  background:var(--ip-card); border:var(--ip-border) solid var(--ip-line);
+  border-radius:0; cursor:pointer;
+}
+.chip.on{ background:var(--ip-accent); color:#fff; }
+
+.test-row{
+  display:flex; align-items:center; gap:8px;
+  padding:9px 0; border-bottom:1px dashed var(--ip-hair);
+}
+.test-row:last-child{ border-bottom:none; }
+.test-row label{ flex:1; font-size:13.5px; }
+.test-row input{ width:5.5rem; }
+
+/* ───────── ตัวรันเซสชัน ───────── */
+.view--full{ gap:10px; }
+.run-top{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.run-prog{ font-size:12px; color:var(--ip-mut); }
+.run-clock{ font-size:13px; font-weight:600; }
+.run-card{ gap:0; }
+.run-name{ margin:6px 0 0; font:700 20px/1.35 var(--ip-font); }
+.run-cue{ margin:8px 0 0; font-size:13.5px; line-height:1.65; color:var(--ip-text-2); }
+.run-alt{
+  margin:8px 0 0; padding:8px 10px; font-size:12.5px; line-height:1.55;
+  background:var(--ip-card-2); border-left:3px solid var(--ip-accent); color:var(--ip-text-2);
+}
+.run-alt:empty{ display:none; }
+.run-why{ font-size:12.5px; line-height:1.6; color:var(--ip-mut); text-align:center; margin:0; }
+
+.timer{ margin:16px 0 6px; text-align:center; }
+.timer-num{
+  font-size:clamp(56px,22vw,96px); font-weight:700; line-height:1;
+  letter-spacing:-.03em; font-variant-numeric:tabular-nums;
+}
+.timer.run  .timer-num{ color:var(--ip-accent); }
+.timer.rest .timer-num{ color:var(--ip-ok); }
+.timer.done .timer-num{ color:var(--ip-danger); }
+.timer-lbl{ margin-top:4px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--ip-mut); }
+.timer.hidden{ display:none; }
+.timer-num.sm{ font-size:clamp(30px,11vw,46px); letter-spacing:0; }
+body.running .tabs{ display:none; }
+body.running .hd{ padding-bottom:10px; }
+
+.setrow{ display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin:10px 0 4px; }
+.setdot{
+  width:30px; height:30px; display:grid; place-items:center;
+  font:600 12px var(--ip-mono);
+  border:var(--ip-border) solid var(--ip-line); background:var(--ip-card); color:var(--ip-text-2);
+}
+.setdot.on{ background:var(--ip-ok); color:#fff; }
+.setdot.now{ background:var(--ip-accent); color:#fff; }
+
+.logrow{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:10px 0 12px; }
+.logrow.hidden{ display:none; }
+.run-nav{ display:flex; gap:8px; margin-top:8px; }
+.run-nav .ip-btn{ flex:1; }
+
+/* ───────── toast ───────── */
+.toast{
+  position:fixed; left:50%; bottom:20px; transform:translate(-50%,120%);
+  max-width:min(92vw,26rem); padding:11px 16px;
+  background:var(--ip-line); color:#fff; font:500 13.5px var(--ip-font);
+  border:var(--ip-border) solid var(--ip-line); box-shadow:4px 4px 0 rgba(0,0,0,.25);
+  transition:transform .22s ease; z-index:60;
+}
+.toast.on{ transform:translate(-50%,0); }
+@media (prefers-reduced-motion:reduce){ .toast{ transition:none; } }

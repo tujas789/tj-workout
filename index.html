@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#e7e4dc">
+<title>TJ Workout — ตารางฝึก</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="instrument-panel.css?v=20260825">
+<link rel="stylesheet" href="style.css?v=20260825">
+</head>
+<body class="ip-page">
+
+<header class="hd">
+  <div class="hd-row">
+    <div>
+      <div class="ip-label" style="margin:0">TJ WORKOUT</div>
+      <div class="hd-date ip-mono" id="hdDate">—</div>
+    </div>
+    <button class="ip-badge" id="syncBadge" title="ตั้งค่าการเชื่อมต่อ">—</button>
+  </div>
+  <nav class="tabs" id="tabs">
+    <button class="tab is-on" data-view="today">วันนี้</button>
+    <button class="tab" data-view="week">สัปดาห์</button>
+    <button class="tab" data-view="morning">เช้านี้</button>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <div class="ip-card" id="setupCard" hidden>
+    <div class="ip-label">URL ของ Apps Script</div>
+    <p class="hint">
+      เก็บไว้ในเครื่องนี้เท่านั้น ไม่ได้อยู่ในโค้ดบน GitHub — ต้องกรอกครั้งเดียวต่อเครื่อง
+      (หาได้จาก <code>docs/DEPLOY.md</code>)
+    </p>
+    <input class="ip-input ip-mono" id="inApiUrl" type="url" inputmode="url"
+           autocapitalize="off" autocorrect="off" spellcheck="false"
+           placeholder="https://script.google.com/macros/s/…/exec" style="margin-top:8px">
+    <div class="setup-btns">
+      <button class="ip-btn ip-btn--sm" id="btnSaveApi">บันทึก + ทดสอบ</button>
+      <button class="ip-btn ip-btn--ghost ip-btn--sm" id="btnCloseApi">ปิด</button>
+    </div>
+    <p class="hint" id="apiStatus"></p>
+  </div>
+
+  <!-- ══════════ วันนี้ ══════════ -->
+  <section id="v-today" class="view is-on">
+    <div class="ip-card sess-head" style="position:relative">
+      <span class="ip-screw"></span>
+      <div class="ip-label">เซสชันวันนี้</div>
+      <h1 class="sess-title" id="todayTitle">—</h1>
+      <p class="sess-why" id="todayWhy"></p>
+      <div class="sess-meta ip-mono" id="todayMeta"></div>
+      <button class="ip-btn ip-btn--block" id="btnStart" style="margin-top:14px">เริ่มเซสชัน</button>
+      <button class="ip-btn ip-btn--ghost ip-btn--block" id="btnMin" style="margin-top:8px">
+        เวลาไม่พอ → โดสขั้นต่ำ 12 นาที
+      </button>
+    </div>
+
+    <div class="ip-card" id="readyCard">
+      <div class="ip-label">เกจวัดความพร้อม</div>
+      <p class="hint">เช็กตอนตื่นนอน 10 วินาที — ใช้ตัดสินว่าวันนี้นับเป็นวันทดสอบได้ไหม</p>
+      <div id="readyList"></div>
+      <div class="ready-verdict ip-mono" id="readyVerdict">ยังไม่ได้เช็ก</div>
+    </div>
+  </section>
+
+  <!-- ══════════ สัปดาห์ ══════════ -->
+  <section id="v-week" class="view">
+    <div class="ip-card">
+      <div class="ip-label">สัปดาห์</div>
+      <p class="hint">ของหนักอยู่ต้นสัปดาห์ ให้ไกลจากวันทดสอบที่สุด · กดวันไหนก็เปิดเซสชันนั้นได้</p>
+      <div id="weekList"></div>
+    </div>
+    <div class="ip-card">
+      <div class="ip-label">บล็อก 5 สัปดาห์</div>
+      <div class="blk-row" style="font-weight:600">
+        <span>สัปดาห์</span><span>โฟกัส</span><span>โหลด</span>
+      </div>
+      <div id="blockList"></div>
+      <p class="hint" style="margin-top:10px">
+        สัปดาห์ 4 ไม่เพิ่มน้ำหนัก แต่ท่าค้างเดินหน้าต่อ — เอ็นได้ไล่ตามกล้ามเนื้อทัน (ADR-0001)
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════ เช้านี้ ══════════ -->
+  <section id="v-morning" class="view">
+    <div class="ip-card">
+      <div class="ip-label">คะแนนปวดตอนเช้า</div>
+      <p class="hint">ตัวชี้วัดเอ็นที่ดีที่สุดที่วัดเองได้ — ให้คะแนนทุกเช้า 0 = ไม่ปวดเลย</p>
+      <div class="scale" id="painScale"></div>
+      <label class="ip-label" style="margin-top:14px">ปวดตรงไหน</label>
+      <div class="chips" id="painWhere"></div>
+      <label class="ip-label" style="margin-top:14px">นอนกี่ชั่วโมง</label>
+      <input class="ip-input" id="sleepHrs" type="number" step="0.5" min="0" max="14" placeholder="8.5">
+      <button class="ip-btn ip-btn--block" id="btnSaveDaily" style="margin-top:14px">บันทึกเช้านี้</button>
+      <p class="hint" id="dailyDone" style="display:none"></p>
+    </div>
+
+    <div class="ip-card">
+      <div class="ip-label">ทดสอบรายเดือน</div>
+      <p class="hint">ทำเดือนละครั้งพอ ไม่ต้องทุกสัปดาห์</p>
+      <div id="testList"></div>
+    </div>
+  </section>
+
+  <!-- ══════════ ตัวรันเซสชัน (เต็มจอ) ══════════ -->
+  <section id="v-run" class="view view--full">
+    <div class="run-top">
+      <button class="ip-btn ip-btn--ghost ip-btn--sm" id="btnQuit">ออก</button>
+      <span class="ip-mono run-prog" id="runProg">—</span>
+      <span class="ip-mono run-clock" id="runClock">00:00</span>
+    </div>
+
+    <div class="ip-card run-card" style="position:relative">
+      <span class="ip-screw"></span>
+      <div class="ip-label" id="runKind">ท่า</div>
+      <h2 class="run-name" id="runName">—</h2>
+      <p class="run-cue" id="runCue"></p>
+      <p class="run-alt" id="runAlt"></p>
+
+      <div class="timer" id="timerBox">
+        <div class="timer-num ip-mono" id="timerNum">45</div>
+        <div class="timer-lbl ip-mono" id="timerLbl">พร้อม</div>
+      </div>
+
+      <div class="setrow" id="setRow"></div>
+
+      <div class="logrow" id="logRow">
+        <div>
+          <label class="ip-label">น้ำหนัก (kg)</label>
+          <input class="ip-input" id="inWeight" type="number" step="0.5" inputmode="decimal" placeholder="—">
+        </div>
+        <div>
+          <label class="ip-label">ครั้ง</label>
+          <input class="ip-input" id="inReps" type="number" inputmode="numeric" placeholder="—">
+        </div>
+      </div>
+
+      <button class="ip-btn ip-btn--block" id="btnMain">เริ่ม</button>
+      <div class="run-nav">
+        <button class="ip-btn ip-btn--ghost ip-btn--sm" id="btnPrev">← ก่อนหน้า</button>
+        <button class="ip-btn ip-btn--ghost ip-btn--sm" id="btnSkip">ข้าม →</button>
+      </div>
+    </div>
+
+    <p class="run-why" id="runWhy"></p>
+  </section>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script src="program.js?v=20260825"></script>
+<script src="api.js?v=20260825"></script>
+<script src="app.js?v=20260825"></script>
+</body>
+</html>
