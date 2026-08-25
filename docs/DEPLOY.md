@@ -7,7 +7,7 @@
 - **scriptId:** `1TD8fMzsNHlp9zZBj1CrC8XopZJUbAHsBBAWd9RHG0O0HFMwfDwKJjCWJ` (container-bound)
 - **Web App `/exec`:**
   `https://script.google.com/macros/s/AKfycbzcxFZYCXG2RNeqG6MteHEdPhQr5W7HU0JBW7HXGqS8T_9jVhq3065cipCOMV8Zkj6Z/exec`
-  Execute as: **Me** · Access: **Anyone** · deploy ล่าสุด **v4 (2026-08-25, เพิ่ม 02_maintenance.gs)**
+  Execute as: **Me** · Access: **Anyone** · deploy ล่าสุด **v5 (2026-08-25, ถอด action=recent)**
   ⚠️ ทุกครั้งที่ deploy อัปเดตเลขเวอร์ชันบรรทัดนี้ให้ตรง (เช็คด้วย `clasp list-deployments`)
 
 ### สร้างครั้งแรกด้วย clasp (ทำไปแล้ว — บันทึกไว้เผื่อทำโปรเจกต์ใหม่)

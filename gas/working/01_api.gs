@@ -13,7 +13,6 @@ function doGet(e) {
   try {
     if (action === 'ping')       return json_({ ok: true, at: new Date().toISOString() });
     if (action === 'getProgram') return json_({ ok: true, rows: readSheet_('Program') });
-    if (action === 'recent')     return json_({ ok: true, rows: readSheet_(e.parameter.sheet || 'SetLog').slice(-50) });
     return json_({ ok: false, error: 'ไม่รู้จัก action: ' + action });
   } catch (err) {
     return json_({ ok: false, error: String(err) });

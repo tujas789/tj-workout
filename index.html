@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="instrument-panel.css?v=20260825d">
-<link rel="stylesheet" href="style.css?v=20260825d">
+<link rel="stylesheet" href="instrument-panel.css?v=20260825e">
+<link rel="stylesheet" href="style.css?v=20260825e">
 </head>
 <body class="ip-page">
 
@@ -47,6 +47,9 @@
     <p class="hint" id="apiStatus"></p>
 
     <hr class="ip-divider">
+    <p class="hint" id="verInfo"></p>
+
+    <hr class="ip-divider">
     <div class="ip-label">ประวัติในเครื่อง</div>
     <p class="hint" id="histInfo"></p>
     <p class="hint">
@@ -79,6 +82,25 @@
       <div id="readyList"></div>
       <div class="ready-verdict ip-mono" id="readyVerdict">ยังไม่ได้เช็ก</div>
     </div>
+
+    <div class="ip-card" id="testCard">
+      <div class="ip-label">หลังลงสนามแบด</div>
+      <p class="hint">
+        บันทึกตอนกลับถึงบ้าน ใช้เวลา 30 วินาที — <b>แรงตก</b> คือตัวชี้วัดหลักของความเร็วในการฟื้น
+        และเป็นอาการที่โปรแกรมนี้ตั้งใจแก้
+      </p>
+
+      <label class="ip-label" style="margin-top:12px">แรงตก — เกมสุดท้ายเทียบเกมแรก</label>
+      <p class="hint" style="margin-top:2px">0 = เหมือนเดิม · 10 = แทบไม่เหลือ</p>
+      <div class="scale" id="dropScale"></div>
+
+      <label class="ip-label" for="inLastGame" style="margin-top:14px">ตีเหนือหัวเต็มแรงได้ถึงเกมที่</label>
+      <p class="hint" style="margin-top:2px">เกมที่เท่าไหร่ก่อนเริ่มต้องออมแรง</p>
+      <input class="ip-input" id="inLastGame" type="number" inputmode="numeric" min="1" max="20" placeholder="เช่น 2">
+
+      <button class="ip-btn ip-btn--block" id="btnSaveTestDay" style="margin-top:14px">บันทึกวันทดสอบ</button>
+      <p class="hint" id="testDone"></p>
+    </div>
   </section>
 
   <!-- ══════════ รอบนี้ ══════════ -->
@@ -91,18 +113,19 @@
       </p>
       <div id="cycleList"></div>
       <div class="cyc-count ip-mono" id="cycCount"></div>
+      <p class="hint" id="cycPriority"></p>
       <button class="ip-btn ip-btn--ghost ip-btn--block" id="btnTestDay" style="margin-top:10px">
         วันนี้ลงสนามแบด → บันทึกเป็นวันทดสอบ
       </button>
     </div>
     <div class="ip-card">
-      <div class="ip-label">บล็อก 5 รอบ</div>
+      <div class="ip-label">บล็อก 5 สัปดาห์</div>
       <div class="blk-row" style="font-weight:600">
-        <span>รอบที่</span><span>โฟกัส</span><span>โหลด</span>
+        <span>สัปดาห์</span><span>โฟกัส</span><span>โหลด</span>
       </div>
       <div id="blockList"></div>
       <p class="hint" style="margin-top:10px">
-        รอบที่ 4 ไม่เพิ่มน้ำหนัก แต่ท่าค้างเดินหน้าต่อ — เอ็นได้ไล่ตามกล้ามเนื้อทัน (ADR-0001)
+        สัปดาห์ที่ 4 ไม่เพิ่มน้ำหนัก แต่ท่าค้างเดินหน้าต่อ — เอ็นได้ไล่ตามกล้ามเนื้อทัน (ADR-0001)
       </p>
     </div>
   </section>
@@ -175,8 +198,8 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="program.js?v=20260825d"></script>
-<script src="api.js?v=20260825d"></script>
-<script src="app.js?v=20260825d"></script>
+<script src="program.js?v=20260825e"></script>
+<script src="api.js?v=20260825e"></script>
+<script src="app.js?v=20260825e"></script>
 </body>
 </html>

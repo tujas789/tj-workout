@@ -29,6 +29,18 @@ function beep(times, freq) {
 const vibrate = ms => { try { navigator.vibrate && navigator.vibrate(ms); } catch (e) {} }
 const mmss = s => pad(Math.floor(s / 60)) + ':' + pad(s % 60);
 
+/* เดิมสูตรนี้เขียนซ้ำ 4 จุด */
+const agoText = d => { const n = daysSince(d); return n === 0 ? 'วันนี้' : n === 1 ? 'เมื่อวาน' : n + ' วันก่อน'; };
+
+/* api.js ไม่แตะ DOM — มันเรียก onSyncChange() แล้ว UI มาวาดที่นี่ */
+function renderSyncBadge() {
+  const el = $('syncBadge'); if (!el) return;
+  if (NO_SERVER)         { el.textContent = 'ตั้งค่า API'; el.className = 'ip-badge ip-badge--danger'; }
+  else if (QUEUE.length) { el.textContent = 'รอส่ง ' + QUEUE.length; el.className = 'ip-badge ip-badge--accent'; }
+  else                   { el.textContent = 'ซิงก์แล้ว'; el.className = 'ip-badge ip-badge--ok'; }
+}
+onSyncChange = renderSyncBadge;
+
 /* ═══════════════ สลับหน้า ═══════════════ */
 function show(view) {
   document.querySelectorAll('.view').forEach(v => v.classList.toggle('is-on', v.id === 'v-' + view));
@@ -52,16 +64,17 @@ $('btnClearHist').addEventListener('click', () => {
   if (!confirm('ล้างประวัติในเครื่องทั้งหมด ' + HIST.length + ' รายการ?\n\n' +
                'รอบจะเริ่มใหม่จากบ้าน B · แถวในชีตไม่ถูกลบ')) return;
   HIST = []; LS.set('hist', []);
-  Object.keys(localStorage).filter(k => k.indexOf('tw_ready:') === 0).forEach(k => localStorage.removeItem(k));
+  LS.removePrefix('ready:');
   ready = {};
   renderToday(); renderReady(); renderCycle(); renderSetup();
   toast('ล้างแล้ว — เริ่มรอบใหม่');
 });
 function renderSetup() {
+  $('verInfo').textContent = 'โปรแกรมเวอร์ชัน ' + PROGRAM.version + ' · ' + PROGRAM.note;
   const last = HIST[HIST.length - 1];
   $('histInfo').textContent = HIST.length
     ? HIST.length + ' รายการ · ล่าสุด ' + labelOf(last.key) + ' ' +
-      (daysSince(last.d) === 0 ? 'วันนี้' : daysSince(last.d) + ' วันก่อน')
+      agoText(last.d)
     : 'ยังไม่มีประวัติ — รอบจะเริ่มที่บ้าน B';
 }
 $('btnSaveApi').addEventListener('click', () => {
@@ -83,17 +96,13 @@ function blockReason(key) {
   const r = PROGRAM.rules[key] || {};
   const ls = lastOf(key);
   if (ls) {
-    const g = daysSince(ls.d);
-    if (g < (r.minGap || 2))
-      return 'เพิ่งทำไป' + (g === 0 ? 'วันนี้' : 'เมื่อ ' + g + ' วันก่อน') + ' — ควรเว้น ' + (r.minGap || 2) + ' วัน';
+    if (daysSince(ls.d) < (r.minGap || 2))
+      return 'เพิ่งทำไป' + agoText(ls.d) + ' — ควรเว้น ' + (r.minGap || 2) + ' วัน';
   }
   if (r.afterTest) {
     const lt = lastOf('test');
-    if (lt && daysSince(lt.d) < r.afterTest) {
-      const g = daysSince(lt.d);
-      return 'ลงสนาม' + (g === 0 ? 'วันนี้' : g === 1 ? 'เมื่อวาน' : 'เมื่อ ' + g + ' วันก่อน') +
-             ' — ขาหนักต้องห่างวันทดสอบ ' + r.afterTest + ' วัน';
-    }
+    if (lt && daysSince(lt.d) < r.afterTest)
+      return 'ลงสนาม' + agoText(lt.d) + ' — ขาหนักต้องห่างวันทดสอบ ' + r.afterTest + ' วัน';
   }
   return null;
 }
@@ -116,6 +125,15 @@ function suggest() {
 
 let SUGGEST = null;
 
+/* เหลืออีกกี่วันในช่วงไต่ช้า — นับจากเซสชันหลักครั้งแรกที่บันทึกไว้ (ADR-0001)
+   null = ยังไม่เริ่ม หรือพ้นช่วงแล้ว */
+function rampLeft() {
+  const first = HIST.filter(h => PROGRAM.cycle.includes(h.key))[0];
+  if (!first) return null;
+  const left = PROGRAM.rampIn.days - daysSince(first.d);
+  return left > 0 ? left : null;
+}
+
 function renderToday() {
   $('hdDate').textContent = todayISO();
   SUGGEST = suggest();
@@ -131,6 +149,9 @@ function renderToday() {
   /* ทำไมถึงเสนออันนี้ · ทำไมข้ามอันอื่น · เตือนล่วงหน้า — ประกอบครั้งเดียวแล้วเซ็ตทีเดียว */
   const notes = SUGGEST.skipped.map(x =>
     'ข้าม <b>' + esc(labelOf(x.key)) + '</b> — ' + esc(x.why));
+  const left = rampLeft();
+  if (left !== null)
+    notes.unshift('<b>' + esc(PROGRAM.rampIn.label) + '</b> เหลืออีก ' + left + ' วัน — ' + esc(PROGRAM.rampIn.note));
   const rule = PROGRAM.rules[key];
   if (rule && rule.note) notes.push(esc(rule.note));
 
@@ -141,7 +162,7 @@ function renderToday() {
   /* ทำอะไรไปล่าสุด */
   const lastAny = HIST[HIST.length - 1];
   $('todayLast').textContent = lastAny
-    ? 'ล่าสุด: ' + labelOf(lastAny.key) + ' ' + (daysSince(lastAny.d) === 0 ? 'วันนี้' : daysSince(lastAny.d) + ' วันก่อน')
+    ? 'ล่าสุด: ' + labelOf(lastAny.key) + ' ' + agoText(lastAny.d)
     : 'ยังไม่เคยบันทึกเซสชันไหนเลย — เริ่มที่อันนี้ได้';
 }
 const labelOf = key => key === 'test' ? 'วันทดสอบ (แบด)'
@@ -170,6 +191,29 @@ $('readyList').addEventListener('click', e => {
   LS.set('ready:' + todayISO(), ready); renderReady();
 });
 
+/* ═══════════════ หลังลงสนามแบด — บันทึกแรงตก ═══════════════ */
+let dropoff = null;
+function renderTestCard() {
+  $('dropScale').innerHTML = Array.from({ length: 11 }, (_, i) =>
+    '<button data-v="' + i + '"' + (dropoff === i ? ' class="on"' : '') + '>' + i + '</button>').join('');
+  const t = lastOf('test');
+  $('testDone').textContent = t && daysSince(t.d) === 0
+    ? 'บันทึกวันทดสอบของวันนี้แล้ว — กดซ้ำได้ถ้าจะแก้ตัวเลข' : '';
+}
+$('dropScale').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  dropoff = +b.dataset.v; renderTestCard();
+});
+$('btnSaveTestDay').addEventListener('click', () => {
+  if (dropoff == null) return toast('เลือกคะแนนแรงตกก่อน');
+  const game = $('inLastGame').value;
+  Log.test('dropoff', 'แรงตก (เกมสุดท้ายเทียบเกมแรก)', dropoff, '0–10');
+  if (game) Log.test('overhead_last_game', 'ตีเหนือหัวเต็มแรงถึงเกมที่', game, 'เกม');
+  Log.testDay();
+  renderSyncBadge(); renderToday(); renderCycle(); renderTestCard();
+  toast('บันทึกแล้ว — วันยิมจะถูกเลื่อนออกไปให้อัตโนมัติ');
+});
+
 /* ═══════════════ รอบนี้ ═══════════════ */
 function renderCycle() {
   const nextKey = (SUGGEST || suggest()).key;
@@ -179,7 +223,7 @@ function renderCycle() {
     const s = PROGRAM.sessions[key];
     const ls = lastOf(key);
     const why = key === 'easy' ? null : blockReason(key);
-    const status = ls ? (daysSince(ls.d) === 0 ? 'วันนี้' : daysSince(ls.d) + ' วันก่อน') : 'ยังไม่เคย';
+    const status = ls ? agoText(ls.d) : 'ยังไม่เคย';
     const mark = key === nextKey ? '▶' : why ? '⏸' : '○';
     return '<button class="wk-row' + (key === nextKey ? ' is-next' : '') + '" data-key="' + key + '">' +
       '<span class="wk-dow ' + (why ? 'wait' : 'due') + '">' + mark + '</span>' +
@@ -187,6 +231,10 @@ function renderCycle() {
         (why ? '<br><span style="font-size:12px;color:var(--ip-mut)">' + esc(why) + '</span>' : '') + '</span>' +
       '<span class="wk-min">' + status + '</span></button>';
   }).join('');
+
+  $('cycPriority').innerHTML = 'เวลาไม่พอในช่วงนี้? ตัดจากท้ายก่อน — ' +
+    PROGRAM.priority.map((k, i) => (i ? ' &gt; ' : '') + '<b>' + esc(labelOf(k)) + '</b>').join('') +
+    ' · เหลือน้อยจริง ๆ ใช้โดสขั้นต่ำ ' + PROGRAM.sessions.min.mins + ' นาที';
 
   const w = PROGRAM.perWeek;
   const mainDone = PROGRAM.cycle.reduce((n, k) => n + doneWithin(k, 7), 0);
@@ -206,9 +254,8 @@ $('cycleList').addEventListener('click', e => {
   startSession(r.dataset.key);
 });
 $('btnTestDay').addEventListener('click', () => {
-  if (!confirm('บันทึกว่าวันนี้ลงสนามแบด?')) return;
-  Log.testDay(); renderSyncBadge(); renderToday(); renderCycle();
-  toast('บันทึกวันทดสอบแล้ว — วันยิมจะถูกเลื่อนออกไปให้อัตโนมัติ');
+  show('today');
+  $('testCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
 });
 
 /* ═══════════════ เช้านี้ ═══════════════ */
@@ -261,6 +308,65 @@ $('testList').addEventListener('click', e => {
 });
 
 /* ═══════════════ ตัวรันเซสชัน ═══════════════ */
+/* พฤติกรรมของแต่ละชนิดท่า รวมไว้ที่เดียว — เดิมกระจายเป็น cascade 3 จุด
+   (ป้ายชื่อชนิด · ตัวเลขตอนยังไม่เริ่ม · สิ่งที่เกิดเมื่อกดปุ่มหลัก)          */
+const TYPE = {
+  hold: {
+    label: 'ท่าค้าง',
+    idle: it => ({ num: it.hold, lbl: 'ค้าง ' + it.hold + ' วินาที' }),
+    dots: it => it.sets, showLog: false,
+    main: it => 'เริ่ม เซ็ต ' + RUN.setNo,
+    go: it => startTick(it.hold, 'work', () => {
+      if (it.log) { Log.hold(RUN.key, it.id, it.name, RUN.setNo, it.hold); renderSyncBadge(); }
+      if (RUN.setNo < it.sets) startTick(it.rest || 30, 'rest', () => nextSetOrItem(it.sets));
+      else { RUN.done++; nextItem(); }
+    })
+  },
+  time: {
+    label: 'จับเวลา',
+    idle: it => ({ num: mmss(it.secs), lbl: 'พร้อม' }),
+    dots: () => 1, showLog: false,
+    main: () => 'เริ่ม',
+    go: it => startTick(it.secs, 'work', () => {
+      if (it.log) Log.set(RUN.key, it.id, it.name, 1, '', Math.round(it.secs / 60) + ' นาที', '');
+      RUN.done++; nextItem();
+    })
+  },
+  interval: {
+    label: 'อินเทอร์วัล',
+    idle: (it, iv) => ({ num: iv.work >= 60 ? mmss(iv.work) : iv.work, lbl: iv.label }),
+    dots: (it, iv) => iv.rounds, showLog: false, cue: (it, iv) => iv.cue,
+    main: () => 'เริ่ม',
+    go: (it, iv) => {
+      const round = () => startTick(iv.work, 'work', () => {
+        if (RUN.round >= iv.rounds) {
+          Log.set(RUN.key, it.id, it.name, 1, '', iv.rounds + ' รอบ', iv.label);
+          renderSyncBadge(); RUN.done++;
+          toast('จบอินเทอร์วัล — นับวินาทีจนพูดได้เต็มประโยค แล้วบันทึกในหน้าเช้านี้');
+          nextItem(); return;
+        }
+        startTick(iv.rest, 'rest', () => { RUN.round++; RUN.setNo = RUN.round; renderRun(); round(); });
+      });
+      round();
+    }
+  },
+  reps: {
+    label: 'ยก',
+    idle: it => ({ num: it.tempo || '—', lbl: (it.sets || 1) + ' × ' + (it.reps || ''), sm: true }),
+    dots: it => it.sets || 1, showLog: true,
+    main: () => 'บันทึกเซ็ต ' + RUN.setNo,
+    go: it => {
+      if (it.log) {
+        Log.set(RUN.key, it.id, it.name, RUN.setNo, $('inWeight').value, $('inReps').value || it.reps, it.tempo || '');
+        $('inReps').value = ''; renderSyncBadge();
+      }
+      if (RUN.setNo < (it.sets || 1)) startTick(it.rest || 45, 'rest', () => nextSetOrItem(it.sets || 1));
+      else { RUN.done++; nextItem(); }
+    }
+  }
+};
+const typeOf = it => TYPE[it.type] || TYPE.reps;
+
 const RUN = { on:false, key:null, items:[], i:0, setNo:1, phase:'idle',
               left:0, tick:null, t0:0, done:0, iv:null, round:1 };
 
@@ -271,11 +377,11 @@ function startSession(key) {
   RUN.iv = pickInterval();
   document.body.classList.add('running'); show('run'); renderRun();
 }
-/* แบบ A สัปดาห์คู่ · แบบ B สัปดาห์คี่ — สลับอัตโนมัติตามเลขสัปดาห์ของปี */
+/* สลับ A/B ตาม "จำนวนครั้งที่ทำบ้าน B ไปแล้ว" ไม่ใช่เลขสัปดาห์ของปฏิทิน
+   ถ้าเว้นไป 2 สัปดาห์ จะได้ทำแบบที่ยังไม่ได้ทำ ไม่ใช่ข้ามไปเลย */
 function pickInterval() {
-  const d = new Date(), start = new Date(d.getFullYear(), 0, 1);
-  const wk = Math.ceil(((d - start) / 86400000 + start.getDay() + 1) / 7);
-  return wk % 2 === 0 ? PROGRAM.intervals.A : PROGRAM.intervals.B;
+  const n = HIST.filter(h => h.key === 'homeB').length;
+  return n % 2 === 0 ? PROGRAM.intervals.A : PROGRAM.intervals.B;
 }
 const curItem = () => RUN.items[RUN.i];
 
@@ -284,39 +390,35 @@ function renderRun() {
   const s = PROGRAM.sessions[RUN.key];
 
   $('runProg').textContent = 'ท่า ' + (RUN.i + 1) + '/' + RUN.items.length + ' · ' + s.label;
-  $('runKind').textContent = { hold:'ท่าค้าง', reps:'ยก', interval:'อินเทอร์วัล', time:'จับเวลา' }[it.type] || 'ท่า';
+  $('runKind').textContent = typeOf(it).label;
   $('runName').textContent = it.name;
-  $('runCue').textContent  = it.cue || '';
+  const T = typeOf(it);
+  $('runCue').textContent  = (RUN.phase === 'idle' && T.cue ? T.cue(it, RUN.iv) : it.cue) || '';
   $('runAlt').textContent  = it.alt || '';
   $('runWhy').textContent  = it.why || '';
 
   /* จุดบอกเซ็ต */
-  const total = it.type === 'interval' ? RUN.iv.rounds : (it.sets || 1);
+  const total = typeOf(it).dots(it, RUN.iv);
   $('setRow').innerHTML = Array.from({ length: total }, (_, n) =>
     '<div class="setdot' + (n + 1 < RUN.setNo ? ' on' : n + 1 === RUN.setNo ? ' now' : '') + '">' + (n + 1) + '</div>').join('');
   $('setRow').style.display = total > 1 ? '' : 'none';
 
   /* ช่องบันทึก — เฉพาะท่าที่ log ค่าตัวเลข */
-  $('logRow').classList.toggle('hidden', !(it.type === 'reps' && it.log));
+  $('logRow').classList.toggle('hidden', !(typeOf(it).showLog && it.log));
 
   /* นาฬิกา */
   const box = $('timerBox');
   box.className = 'timer ' + (RUN.phase === 'work' ? 'run' : RUN.phase === 'rest' ? 'rest' : '');
   if (RUN.phase === 'idle') {
-    if (it.type === 'hold')          { $('timerNum').textContent = it.hold; $('timerLbl').textContent = 'ค้าง ' + it.hold + ' วินาที'; }
-    else if (it.type === 'time')     { $('timerNum').textContent = mmss(it.secs); $('timerLbl').textContent = 'พร้อม'; }
-    else if (it.type === 'interval') { $('timerNum').textContent = RUN.iv.work >= 60 ? mmss(RUN.iv.work) : RUN.iv.work;
-                                       $('timerLbl').textContent = RUN.iv.label; }
-    else                             { $('timerNum').textContent = it.tempo || '—'; $('timerLbl').textContent = (it.sets||1) + ' × ' + (it.reps||''); }
-    $('timerNum').classList.toggle('sm', it.type === 'reps');
+    const v = typeOf(it).idle(it, RUN.iv);
+    $('timerNum').textContent = v.num;
+    $('timerLbl').textContent = v.lbl;
+    $('timerNum').classList.toggle('sm', !!v.sm);
   }
 
   $('btnMain').textContent =
-    RUN.phase === 'work' || RUN.phase === 'rest' ? 'หยุด'
-    : it.type === 'reps' ? 'บันทึกเซ็ต ' + RUN.setNo
-    : 'เริ่ม' + (it.type === 'hold' ? ' เซ็ต ' + RUN.setNo : '');
+    RUN.phase === 'work' || RUN.phase === 'rest' ? 'หยุด' : typeOf(it).main(it);
 
-  if (it.type === 'interval' && RUN.phase === 'idle') $('runCue').textContent = RUN.iv.cue;
   $('runClock').textContent = mmss(Math.floor((Date.now() - RUN.t0) / 1000));
 }
 
@@ -358,45 +460,8 @@ function nextItem() {
 $('btnMain').addEventListener('click', () => {
   const it = curItem(); if (!it) return;
   beep(1, 520);
-
   if (RUN.phase === 'work' || RUN.phase === 'rest') { stopTick(); RUN.phase = 'idle'; renderRun(); return; }
-
-  if (it.type === 'hold') {
-    startTick(it.hold, 'work', () => {
-      if (it.log) Log.hold(RUN.key, it.id, it.name, RUN.setNo, it.hold);
-      renderSyncBadge();
-      if (RUN.setNo < it.sets) startTick(it.rest || 30, 'rest', () => nextSetOrItem(it.sets));
-      else { RUN.done++; nextItem(); }
-    });
-
-  } else if (it.type === 'time') {
-    startTick(it.secs, 'work', () => {
-      if (it.log) Log.set(RUN.key, it.id, it.name, 1, '', Math.round(it.secs / 60) + ' นาที', '');
-      RUN.done++; nextItem();
-    });
-
-  } else if (it.type === 'interval') {
-    const iv = RUN.iv;
-    const runRound = () => startTick(iv.work, 'work', () => {
-      if (RUN.round >= iv.rounds) {
-        Log.set(RUN.key, it.id, it.name, 1, '', iv.rounds + ' รอบ', iv.label);
-        renderSyncBadge(); RUN.done++;
-        toast('จบอินเทอร์วัล — นับวินาทีจนพูดได้เต็มประโยค แล้วบันทึกในหน้าเช้านี้');
-        nextItem(); return;
-      }
-      startTick(iv.rest, 'rest', () => { RUN.round++; RUN.setNo = RUN.round; renderRun(); runRound(); });
-    });
-    runRound();
-
-  } else { /* reps */
-    if (it.log) {
-      const w = $('inWeight').value, r = $('inReps').value;
-      Log.set(RUN.key, it.id, it.name, RUN.setNo, w, r || it.reps, it.tempo || '');
-      $('inReps').value = ''; renderSyncBadge();
-    }
-    if (RUN.setNo < (it.sets || 1)) startTick(it.rest || 45, 'rest', () => nextSetOrItem(it.sets || 1));
-    else { RUN.done++; nextItem(); }
-  }
+  typeOf(it).go(it, RUN.iv);
 });
 
 $('btnPrev').addEventListener('click', () => {
@@ -423,4 +488,4 @@ $('btnStart').addEventListener('click', () => startSession(SUGGEST.key));
 $('btnMin').addEventListener('click', () => startSession('min'));
 
 /* ═══════════════ เริ่มต้น ═══════════════ */
-renderToday(); renderReady(); renderCycle(); renderMorning(); renderSyncBadge(); syncSoon(800);
+renderToday(); renderReady(); renderTestCard(); renderCycle(); renderMorning(); renderSyncBadge(); syncSoon(800);

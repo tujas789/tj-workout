@@ -26,16 +26,21 @@ const nowHM = () => { const d = new Date(); return pad(d.getHours()) + ':' + pad
 const LS = {
   get(k, dflt) { try { return JSON.parse(localStorage.getItem('tw_' + k)) ?? dflt; }
                  catch (e) { return dflt; } },
-  set(k, v)    { try { localStorage.setItem('tw_' + k, JSON.stringify(v)); } catch (e) {} }
+  set(k, v)    { try { localStorage.setItem('tw_' + k, JSON.stringify(v)); } catch (e) {} },
+  removePrefix(p) {
+    Object.keys(localStorage)
+      .filter(k => k.indexOf('tw_' + p) === 0)
+      .forEach(k => localStorage.removeItem(k));
+  }
 };
 
-let API_URL = '';
-let NO_SERVER = !API_URL;
+let API_URL, NO_SERVER;                              // ค่าจริงตั้งตอนอ่าน localStorage ด้านล่าง
+let onSyncChange = () => {};                         // app.js เป็นคนตั้งว่าจะวาดอะไร — api.js ไม่แตะ DOM
 function setApiUrl(u) {
   API_URL = (u || '').trim();
   LS.set('apiUrl', API_URL);
   NO_SERVER = !API_URL;
-  renderSyncBadge();
+  onSyncChange();
   if (!NO_SERVER) syncSoon(200);
 }
 
@@ -47,9 +52,8 @@ const queueSave = () => LS.set('queue', QUEUE);
 function enqueue(sheet, row) {
   QUEUE.push({ id: 'q' + Date.now() + Math.random().toString(36).slice(2, 6), sheet, row });
   queueSave();
-  renderSyncBadge();   // ให้ป้ายบอก "รอส่ง n" ทันที ไม่ต้องรอ sync จบ
+  onSyncChange();      // ให้ป้ายบอก "รอส่ง n" ทันที ไม่ต้องรอ sync จบ
   syncSoon();
-  return QUEUE.length;
 }
 
 /* ═══════════════ คุยกับ Apps Script ═══════════════ */
@@ -92,7 +96,7 @@ function syncNow() {
     .catch(() => { /* ออฟไลน์/ยิงไม่ผ่าน — คิวยังอยู่ ลองใหม่รอบหน้า */ })
     .finally(() => {
       syncing = false;
-      renderSyncBadge();
+      onSyncChange();
       if (QUEUE.length) syncSoon(30000);
     });
 }
@@ -100,13 +104,6 @@ function syncNow() {
 window.addEventListener('online', () => syncSoon(500));
 document.addEventListener('visibilitychange', () => { if (!document.hidden) syncSoon(500); });
 
-function renderSyncBadge() {
-  const el = $('syncBadge');
-  if (!el) return;
-  if (NO_SERVER)      { el.textContent = 'ตั้งค่า API'; el.className = 'ip-badge ip-badge--danger'; }
-  else if (QUEUE.length) { el.textContent = 'รอส่ง ' + QUEUE.length; el.className = 'ip-badge ip-badge--accent'; }
-  else                { el.textContent = 'ซิงก์แล้ว'; el.className = 'ip-badge ip-badge--ok'; }
-}
 
 /* ═══════════════ ประวัติในเครื่อง — ใช้คำนวณว่าวันนี้ควรทำอะไร ═══════════════ */
 let HIST = LS.get('hist', []);                      // [{d:'2026-08-25', key:'gym'}]
@@ -143,8 +140,5 @@ const Log = {
   },
   test(id, name, value, unit) {
     enqueue('Test', [todayISO(), nowHM(), id, name, value, unit || '']);
-  },
-  recovery(secs) {
-    enqueue('Test', [todayISO(), nowHM(), 'recovery', 'วินาทีจนพูดได้เต็มประโยค', secs, 'วินาที']);
   }
 };
