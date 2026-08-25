@@ -1,0 +1,10 @@
+# OneDrive / macOS
+.DS_Store
+Icon?
+*.tmp
+
+# เครื่องมือเฉพาะเครื่อง (path ไม่เหมือนกันระหว่าง Mac กับ Windows)
+.claude/
+
+# clasp credentials (ถ้ามีหลุดมา) — scriptId ใน .clasp.json commit ได้ แต่ token ห้าม
+.clasprc.json
