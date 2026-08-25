@@ -20,10 +20,11 @@ git -C "$REPO" pull --ff-only
 echo "→ copy ไฟล์"
 # frontend อยู่ที่ root ของ repo เพราะ GitHub Pages เสิร์ฟจาก root เท่านั้น
 cp "$SRC/frontend/"{index.html,style.css,instrument-panel.css,program.js,api.js,app.js,manifest.json} "$REPO/"
-mkdir -p "$REPO/docs/adr" "$REPO/gas/working"
+mkdir -p "$REPO/docs/adr" "$REPO/gas/working" "$REPO/tools"
 cp "$SRC/docs/"*.md "$SRC/docs/"*.html "$SRC/docs/"*.drawio "$REPO/docs/"
 cp "$SRC/docs/adr/"*.md        "$REPO/docs/adr/"
 cp "$SRC/gas/working/"*.gs     "$REPO/gas/working/"
+cp "$SRC/tools/"*.js           "$REPO/tools/"
 cp "$SRC/gas/working/appsscript.json" "$SRC/gas/working/.clasp.json" "$REPO/gas/working/"
 cp "$SRC/"{README.md,CLAUDE.md,CONTEXT.md,.gitignore,sync-to-repo.sh,sync-to-repo.ps1} "$REPO/"
 

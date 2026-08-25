@@ -26,10 +26,11 @@ Write-Host "→ copy ไฟล์"
 "index.html","style.css","instrument-panel.css","program.js","api.js","app.js","manifest.json" |
   ForEach-Object { Copy-Item "$SRC\frontend\$_" $REPO -Force }
 
-New-Item -ItemType Directory -Force -Path "$REPO\docs\adr","$REPO\gas\working" | Out-Null
+New-Item -ItemType Directory -Force -Path "$REPO\docs\adr","$REPO\gas\working","$REPO\tools" | Out-Null
 Copy-Item "$SRC\docs\*.md","$SRC\docs\*.html","$SRC\docs\*.drawio" "$REPO\docs\" -Force
 Copy-Item "$SRC\docs\adr\*.md"                "$REPO\docs\adr\"    -Force
 Copy-Item "$SRC\gas\working\*.gs"             "$REPO\gas\working\" -Force
+Copy-Item "$SRC\tools\*.js"                   "$REPO\tools\"       -Force
 Copy-Item "$SRC\gas\working\appsscript.json"  "$REPO\gas\working\" -Force
 Copy-Item "$SRC\gas\working\.clasp.json"      "$REPO\gas\working\" -Force
 "README.md","CLAUDE.md","CONTEXT.md",".gitignore","sync-to-repo.sh","sync-to-repo.ps1" |

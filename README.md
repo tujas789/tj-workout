@@ -16,7 +16,11 @@
 | [CONTEXT.md](CONTEXT.md) | คำศัพท์ที่ตกลงความหมายกันแล้ว |
 | [docs/adr/](docs/adr) | การตัดสินใจที่ย้อนกลับยาก |
 | [docs/user-guide.html](docs/user-guide.html) | **คู่มือใช้งาน** — เปิดในเบราว์เซอร์ ([ออนไลน์](https://tujas789.github.io/tj-workout/docs/user-guide.html)) |
-| [docs/tj-workout.drawio](docs/tj-workout.drawio) | ไดอะแกรม 3 หน้า — เปิดที่ [draw.io](https://app.diagrams.net/) หรือ VS Code |
+| [docs/tj-workout.drawio](docs/tj-workout.drawio) | ไดอะแกรม**สถาปัตยกรรม** 3 หน้า (วาดมือ) |
+| [docs/exercises.drawio](docs/exercises.drawio) | ไดอะแกรม**ท่าออกกำลังกาย** 5 หน้า — ⚠️ ถูกสร้างอัตโนมัติ อย่าแก้ด้วยมือ |
+
+> **แก้ท่า/โดส** → แก้ `frontend/program.js` แล้วสั่ง `node tools/gen-exercise-diagram.js`
+> ไดอะแกรมท่าจะตามให้เอง ไม่มีทางหลุดจากของจริง
 
 ## แก้โค้ดแล้วเอาขึ้นเว็บยังไง
 ไฟล์ทำงานอยู่ใน OneDrive (ซิงก์ Mac ↔ Windows) · git repo อยู่**นอก** OneDrive (ซิงก์ผ่าน GitHub)

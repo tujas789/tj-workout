@@ -1,0 +1,526 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="" name="ท่าทั้งหมด">
+    <mxGraphModel dx="1100" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" background="#e7e4dc" math="0" shadow="0">
+      <root>
+        <mxCell id="p0"/>
+        <mxCell id="p1" parent="p0"/>
+        <mxCell id="t1" value="ท่าทั้งหมด — เทียบกันสามเซสชันหลัก" style="text;html=1;fontSize=22;align=left;fontStyle=1;fontColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="70" y="30" width="900" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="t2" value="รวม 119 นาที/รอบ · หมุนซ้าย→ขวา แล้ววนกลับ · สร้างจาก frontend/program.js" style="text;html=1;fontSize=12;align=left;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="70" y="62" width="1000" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="n3" value="&lt;b&gt;บ้าน B&lt;/b&gt;  40 นาที" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#1d4ed8;strokeColor=#14110d;fontColor=#ffffff;fontSize=13;verticalAlign=middle;spacingTop=0" vertex="1" parent="p1">
+          <mxGeometry x="70" y="105" width="320" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="n4" value="&lt;b&gt;วอร์ม — ปั่นเบา&lt;/b&gt;&#10;4 นาที" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#8c8678;dashed=1;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="70" y="150" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="230" y="202" as="sourcePoint"/><mxPoint x="230" y="212" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n6" value="&lt;b&gt;Wall sit / Spanish squat&lt;/b&gt;&#10;5 × 45 วิ · พัก 30 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#ffe9c7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="70" y="212" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="230" y="264" as="sourcePoint"/><mxPoint x="230" y="274" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n8" value="&lt;b&gt;Interval บนจักรยาน&lt;/b&gt;&#10;สลับ A/B ให้เอง" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#1d4ed8;strokeColor=#14110d;fontColor=#ffffff" vertex="1" parent="p1">
+          <mxGeometry x="70" y="274" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="e9" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="230" y="326" as="sourcePoint"/><mxPoint x="230" y="336" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n10" value="&lt;b&gt;Calf raise ขาเดียว (ดัมเบล 7.5)&lt;/b&gt;&#10;2 × 12/ข้าง · จังหวะ 3-1-3 · พัก 45 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="70" y="336" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="e11" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="230" y="388" as="sourcePoint"/><mxPoint x="230" y="398" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n12" value="&lt;b&gt;ยาข้อศอก โดส 2 (ดัมเบล 2 kg)&lt;/b&gt;&#10;2 × 10/ข้าง · จังหวะ ลง 4 วิ · พัก 30 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="70" y="398" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="e13" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="230" y="450" as="sourcePoint"/><mxPoint x="230" y="460" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n14" value="&lt;b&gt;ยืดคลาย&lt;/b&gt;&#10;2 นาที" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#8c8678;dashed=1;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="70" y="460" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="n15" value="&lt;b&gt;ยิม&lt;/b&gt;  42 นาที" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#1d4ed8;strokeColor=#14110d;fontColor=#ffffff;fontSize=13;verticalAlign=middle;spacingTop=0" vertex="1" parent="p1">
+          <mxGeometry x="430" y="105" width="320" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="n16" value="&lt;b&gt;วอร์ม&lt;/b&gt;&#10;8 นาที" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#8c8678;dashed=1;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="430" y="150" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="e17" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="590" y="202" as="sourcePoint"/><mxPoint x="590" y="212" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n18" value="&lt;b&gt;Leg press&lt;/b&gt;&#10;4 × 6–8 · จังหวะ 3-1-1 · พัก 120 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="430" y="212" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="e19" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="590" y="264" as="sourcePoint"/><mxPoint x="590" y="274" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n20" value="&lt;b&gt;Romanian deadlift&lt;/b&gt;&#10;4 × 8 · จังหวะ 3-0-1 · พัก 120 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="430" y="274" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="e21" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="590" y="326" as="sourcePoint"/><mxPoint x="590" y="336" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n22" value="&lt;b&gt;Lat pulldown (สลับกับ C2)&lt;/b&gt;&#10;3 × 8–10 · จังหวะ 2-1-2 · พัก 60 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="430" y="336" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="e23" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="590" y="388" as="sourcePoint"/><mxPoint x="590" y="398" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n24" value="&lt;b&gt;Incline dumbbell press (สลับกับ C1)&lt;/b&gt;&#10;3 × 8–10 · จังหวะ 3-0-1 · พัก 60 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="430" y="398" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="e25" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="590" y="450" as="sourcePoint"/><mxPoint x="590" y="460" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n26" value="&lt;b&gt;Calf raise ยืน + นั่ง&lt;/b&gt;&#10;3 × 10 ต่อแบบ · จังหวะ 3-2-3 · พัก 45 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="430" y="460" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="e27" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="590" y="512" as="sourcePoint"/><mxPoint x="590" y="522" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n28" value="&lt;b&gt;Farmer carry&lt;/b&gt;&#10;2 × 40 เมตร · พัก 90 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="430" y="522" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="n29" value="&lt;b&gt;บ้าน A&lt;/b&gt;  37 นาที" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#1d4ed8;strokeColor=#14110d;fontColor=#ffffff;fontSize=13;verticalAlign=middle;spacingTop=0" vertex="1" parent="p1">
+          <mxGeometry x="790" y="105" width="320" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="n30" value="&lt;b&gt;วอร์ม&lt;/b&gt;&#10;5 นาที" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#8c8678;dashed=1;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="790" y="150" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="e31" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="950" y="202" as="sourcePoint"/><mxPoint x="950" y="212" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n32" value="&lt;b&gt;Wall sit&lt;/b&gt;&#10;4 × 45 วิ · พัก 30 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#ffe9c7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="790" y="212" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="e33" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="950" y="264" as="sourcePoint"/><mxPoint x="950" y="274" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n34" value="&lt;b&gt;Push-up (สลับกับ A2)&lt;/b&gt;&#10;4 × 6–10 · จังหวะ 3-1-1 · พัก 45 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="790" y="274" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="e35" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="950" y="326" as="sourcePoint"/><mxPoint x="950" y="336" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n36" value="&lt;b&gt;One-arm row ดัมเบล 7.5 (สลับกับ A1)&lt;/b&gt;&#10;3 × 10/ข้าง · จังหวะ 2-1-2 · พัก 45 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="790" y="336" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="e37" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="950" y="388" as="sourcePoint"/><mxPoint x="950" y="398" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n38" value="&lt;b&gt;Wrist extension ผ่อนลง (2 kg)&lt;/b&gt;&#10;2 × 10/ข้าง · จังหวะ ลง 4 วิ · พัก 20 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="790" y="398" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="e39" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="950" y="450" as="sourcePoint"/><mxPoint x="950" y="460" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n40" value="&lt;b&gt;Wrist flexion ผ่อนลง (2 kg)&lt;/b&gt;&#10;2 × 10/ข้าง · จังหวะ ลง 4 วิ · พัก 20 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="790" y="460" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="e41" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="950" y="512" as="sourcePoint"/><mxPoint x="950" y="522" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n42" value="&lt;b&gt;External rotation นอนตะแคง (2 kg)&lt;/b&gt;&#10;2 × 12/ข้าง · จังหวะ 2-1-2 · พัก 20 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="790" y="522" width="320" height="52" as="geometry"/>
+        </mxCell>
+        <mxCell id="e43" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="950" y="574" as="sourcePoint"/><mxPoint x="950" y="584" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n44" value="&lt;b&gt;Dead bug&lt;/b&gt;&#10;3 × 8/ข้าง · จังหวะ ช้า · พัก 30 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="790" y="584" width="320" height="52" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="B" name="บ้าน B">
+    <mxGraphModel dx="1100" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" background="#e7e4dc" math="0" shadow="0">
+      <root>
+        <mxCell id="p0"/>
+        <mxCell id="p1" parent="p0"/>
+        <mxCell id="t45" value="บ้าน B — เครื่องยนต์ + เข่า/ข้อเท้า" style="text;html=1;fontSize=22;align=left;fontStyle=1;fontColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="90" y="30" width="900" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="t46" value="40 นาที · 6 ท่า · บ้าน" style="text;html=1;fontSize=12;align=left;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="90" y="62" width="900" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="t47" value="วันที่สร้างความเร็วในการฟื้น — ตัวชี้ขาดของแรงตกในเกมสอง" style="text;html=1;fontSize=11;align=left;fontColor=#8c8678" vertex="1" parent="p1">
+          <mxGeometry x="90" y="84" width="900" height="23" as="geometry"/>
+        </mxCell>
+        <mxCell id="n48" value="&lt;b&gt;1. วอร์ม — ปั่นเบา&lt;/b&gt;&#10;[จับเวลา]  4 นาที" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#8c8678;dashed=1;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="90" y="130" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n49" value="💡 เพิ่มความหนืดขึ้นเรื่อย ๆ นาทีสุดท้ายควรเริ่มหอบเบา ๆ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="130" width="380" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="e50" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="192" as="sourcePoint"/><mxPoint x="400" y="218" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n51" value="&lt;b&gt;2. Wall sit / Spanish squat&lt;/b&gt;&#10;[ท่าค้าง]  5 × 45 วิ · พัก 30 วิ   ⟨บันทึกน้ำหนัก/ครั้ง⟩" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#ffe9c7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="90" y="218" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n52" value="💡 เข่างอ 90° หลังแนบกำแพง ปลายเท้าอยู่หน้าเข่า — ปวดได้ไม่เกิน 3/10" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="218" width="380" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="e53" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="280" as="sourcePoint"/><mxPoint x="400" y="306" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n54" value="&lt;b&gt;3. Interval บนจักรยาน&lt;/b&gt;&#10;[อินเทอร์วัล]  สลับ A/B ให้เอง   ⟨บันทึกน้ำหนัก/ครั้ง⟩" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#1d4ed8;strokeColor=#14110d;fontColor=#ffffff" vertex="1" parent="p1">
+          <mxGeometry x="90" y="306" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n55" value="💡 สลับแบบ A / แบบ B ทุกสัปดาห์ — ดูรายละเอียดในหน้าจับเวลา" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="306" width="380" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="e56" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="368" as="sourcePoint"/><mxPoint x="400" y="394" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n57" value="&lt;b&gt;4. Calf raise ขาเดียว (ดัมเบล 7.5)&lt;/b&gt;&#10;[ยก]  2 × 12/ข้าง · จังหวะ 3-1-3 · พัก 45 วิ   ⟨บันทึกน้ำหนัก/ครั้ง⟩" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="90" y="394" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n58" value="💡 ยืนปลายเท้าบนขอบบันได ปล่อยส้นลงต่ำสุด ขึ้น-ลงอย่างละ 3 วินาที" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="394" width="380" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="e59" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="456" as="sourcePoint"/><mxPoint x="400" y="482" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n60" value="&lt;b&gt;5. ยาข้อศอก โดส 2 (ดัมเบล 2 kg)&lt;/b&gt;&#10;[ยก]  2 × 10/ข้าง · จังหวะ ลง 4 วิ · พัก 30 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="90" y="482" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n61" value="💡 Wrist extension + flexion แบบผ่อนลงช้า อย่างละ 2 เซ็ต" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="482" width="380" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="e62" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="544" as="sourcePoint"/><mxPoint x="400" y="570" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n63" value="&lt;b&gt;6. ยืดคลาย&lt;/b&gt;&#10;[จับเวลา]  2 นาที" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#8c8678;dashed=1;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="90" y="570" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n64" value="💡 น่อง สะโพกหน้า หลังต้นขา ข้างละ 30 วินาที" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="570" width="380" height="62" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="" name="ยิม">
+    <mxGraphModel dx="1100" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" background="#e7e4dc" math="0" shadow="0">
+      <root>
+        <mxCell id="p0"/>
+        <mxCell id="p1" parent="p0"/>
+        <mxCell id="t65" value="ยิม — โหลดหนัก" style="text;html=1;fontSize=22;align=left;fontStyle=1;fontColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="90" y="30" width="900" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="t66" value="42 นาที · 7 ท่า · ยิม" style="text;html=1;fontSize=12;align=left;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="90" y="62" width="900" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="t67" value="วันเดียวที่เพิ่มน้ำหนักได้ไม่จำกัด — ห้ามตัดทิ้ง ห้ามเอาไปทำท่าที่บ้านทำได้" style="text;html=1;fontSize=11;align=left;fontColor=#8c8678" vertex="1" parent="p1">
+          <mxGeometry x="90" y="84" width="900" height="23" as="geometry"/>
+        </mxCell>
+        <mxCell id="n68" value="&lt;b&gt;1. วอร์ม&lt;/b&gt;&#10;[จับเวลา]  8 นาที" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#8c8678;dashed=1;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="90" y="130" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n69" value="💡 จักรยาน 5 นาที + squat ตัวเปล่า 10 + hip hinge ตัวเปล่า 10 + wall sit 2×30 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="130" width="380" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="e70" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="192" as="sourcePoint"/><mxPoint x="400" y="218" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n71" value="&lt;b&gt;2. Leg press&lt;/b&gt;&#10;[ยก]  4 × 6–8 · จังหวะ 3-1-1 · พัก 120 วิ   ⟨บันทึกน้ำหนัก/ครั้ง⟩" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="90" y="218" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n72" value="💡 เท้ากลางแป้น ลงจนต้นขาเกือบชิดอก ห้ามล็อกเข่าสุดตอนบน" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="218" width="380" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n73" value="สำรอง: ไม่มีเครื่อง → Goblet squat (ดัมเบลหนักสุด) หรือ Hack squat" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#ffe9c7;strokeColor=#8c8678;dashed=1;fontSize=9;fontColor=#4f4a40;verticalAlign=middle;spacingTop=0" vertex="1" parent="p1">
+          <mxGeometry x="734" y="282" width="380" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="e74" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="280" as="sourcePoint"/><mxPoint x="400" y="306" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n75" value="&lt;b&gt;3. Romanian deadlift&lt;/b&gt;&#10;[ยก]  4 × 8 · จังหวะ 3-0-1 · พัก 120 วิ   ⟨บันทึกน้ำหนัก/ครั้ง⟩" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="90" y="306" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n76" value="💡 ดันสะโพกไปหลัง เข่างอนิดเดียว หลังตรงตลอด — หยุดทันทีที่หลังเริ่มโก่ง" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="306" width="380" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n77" value="สำรอง: ไม่มีบาร์ → Dumbbell RDL สองมือ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#ffe9c7;strokeColor=#8c8678;dashed=1;fontSize=9;fontColor=#4f4a40;verticalAlign=middle;spacingTop=0" vertex="1" parent="p1">
+          <mxGeometry x="734" y="370" width="380" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="e78" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="368" as="sourcePoint"/><mxPoint x="400" y="394" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n79" value="&lt;b&gt;4. Lat pulldown (สลับกับ C2)&lt;/b&gt;&#10;[ยก]  3 × 8–10 · จังหวะ 2-1-2 · พัก 60 วิ   ⟨บันทึกน้ำหนัก/ครั้ง⟩" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="90" y="394" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n80" value="💡 ดึงศอกลงหาชายโครง ไม่ใช่ดึงด้วยมือ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="394" width="380" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n81" value="สำรอง: ไม่มีเครื่อง → Dumbbell row หนัก หรือ Assisted pull-up" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#ffe9c7;strokeColor=#8c8678;dashed=1;fontSize=9;fontColor=#4f4a40;verticalAlign=middle;spacingTop=0" vertex="1" parent="p1">
+          <mxGeometry x="734" y="458" width="380" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="e82" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="456" as="sourcePoint"/><mxPoint x="400" y="482" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n83" value="&lt;b&gt;5. Incline dumbbell press (สลับกับ C1)&lt;/b&gt;&#10;[ยก]  3 × 8–10 · จังหวะ 3-0-1 · พัก 60 วิ   ⟨บันทึกน้ำหนัก/ครั้ง⟩" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="90" y="482" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n84" value="💡 เอียงเบาะ 30° ศอกทำมุม 45° กับลำตัว ไม่กาง 90° (ถนอมไหล่)" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="482" width="380" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n85" value="สำรอง: ไม่มีเบาะ → Push-up ยกเท้าสูง" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#ffe9c7;strokeColor=#8c8678;dashed=1;fontSize=9;fontColor=#4f4a40;verticalAlign=middle;spacingTop=0" vertex="1" parent="p1">
+          <mxGeometry x="734" y="546" width="380" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="e86" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="544" as="sourcePoint"/><mxPoint x="400" y="570" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n87" value="&lt;b&gt;6. Calf raise ยืน + นั่ง&lt;/b&gt;&#10;[ยก]  3 × 10 ต่อแบบ · จังหวะ 3-2-3 · พัก 45 วิ   ⟨บันทึกน้ำหนัก/ครั้ง⟩" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="90" y="570" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n88" value="💡 ทำทั้งเข่าตรงและเข่างอ — คนละมัดกัน" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="570" width="380" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n89" value="สำรอง: ไม่มีเครื่อง → ยืนถือดัมเบล / นั่งวางดัมเบลบนเข่า" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#ffe9c7;strokeColor=#8c8678;dashed=1;fontSize=9;fontColor=#4f4a40;verticalAlign=middle;spacingTop=0" vertex="1" parent="p1">
+          <mxGeometry x="734" y="634" width="380" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="e90" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="632" as="sourcePoint"/><mxPoint x="400" y="658" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n91" value="&lt;b&gt;7. Farmer carry&lt;/b&gt;&#10;[ยก]  2 × 40 เมตร · พัก 90 วิ   ⟨บันทึกน้ำหนัก/ครั้ง⟩" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="90" y="658" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n92" value="💡 หนักที่สุดที่ยังยืนตรงได้ ไหล่ตั้ง อกเปิด" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="658" width="380" height="62" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="A" name="บ้าน A">
+    <mxGraphModel dx="1100" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" background="#e7e4dc" math="0" shadow="0">
+      <root>
+        <mxCell id="p0"/>
+        <mxCell id="p1" parent="p0"/>
+        <mxCell id="t93" value="บ้าน A — ส่วนบน + ข้อศอก/ไหล่" style="text;html=1;fontSize=22;align=left;fontStyle=1;fontColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="90" y="30" width="900" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="t94" value="37 นาที · 8 ท่า · บ้าน" style="text;html=1;fontSize=12;align=left;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="90" y="62" width="900" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="t95" value="เซสชันที่เบาที่สุด จึงวางไว้ใกล้วันทดสอบได้ (ห่าง 2 วัน)" style="text;html=1;fontSize=11;align=left;fontColor=#8c8678" vertex="1" parent="p1">
+          <mxGeometry x="90" y="84" width="900" height="23" as="geometry"/>
+        </mxCell>
+        <mxCell id="n96" value="&lt;b&gt;1. วอร์ม&lt;/b&gt;&#10;[จับเวลา]  5 นาที" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#8c8678;dashed=1;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="90" y="130" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n97" value="💡 ปั่นเบา 3 นาที + หมุนไหล่ + ยืด-หดสะบัก 10 ครั้ง" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="130" width="380" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="e98" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="192" as="sourcePoint"/><mxPoint x="400" y="218" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n99" value="&lt;b&gt;2. Wall sit&lt;/b&gt;&#10;[ท่าค้าง]  4 × 45 วิ · พัก 30 วิ   ⟨บันทึกน้ำหนัก/ครั้ง⟩" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#ffe9c7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="90" y="218" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n100" value="💡 เข่างอ 90° — โหลดเอ็นเข่าครั้งที่ 2 ของสัปดาห์" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="218" width="380" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="e101" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="280" as="sourcePoint"/><mxPoint x="400" y="306" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n102" value="&lt;b&gt;3. Push-up (สลับกับ A2)&lt;/b&gt;&#10;[ยก]  4 × 6–10 · จังหวะ 3-1-1 · พัก 45 วิ   ⟨บันทึกน้ำหนัก/ครั้ง⟩" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="90" y="306" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n103" value="💡 ยากไป → วางมือบนโซฟา · ง่ายไป → ยกเท้าสูง" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="306" width="380" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="e104" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="368" as="sourcePoint"/><mxPoint x="400" y="394" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n105" value="&lt;b&gt;4. One-arm row ดัมเบล 7.5 (สลับกับ A1)&lt;/b&gt;&#10;[ยก]  3 × 10/ข้าง · จังหวะ 2-1-2 · พัก 45 วิ   ⟨บันทึกน้ำหนัก/ครั้ง⟩" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="90" y="394" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n106" value="💡 มือยันเก้าอี้ หลังตรงขนานพื้น ดึงศอกไปหลังสะโพก บีบสะบักค้าง 1 วินาที" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="394" width="380" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="e107" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="456" as="sourcePoint"/><mxPoint x="400" y="482" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n108" value="&lt;b&gt;5. Wrist extension ผ่อนลง (2 kg)&lt;/b&gt;&#10;[ยก]  2 × 10/ข้าง · จังหวะ ลง 4 วิ · พัก 20 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="90" y="482" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n109" value="💡 ฝ่ามือคว่ำ ยกขึ้นด้วยมืออีกข้างช่วย แล้วผ่อนลงเอง 4 วินาที" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="482" width="380" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="e110" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="544" as="sourcePoint"/><mxPoint x="400" y="570" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n111" value="&lt;b&gt;6. Wrist flexion ผ่อนลง (2 kg)&lt;/b&gt;&#10;[ยก]  2 × 10/ข้าง · จังหวะ ลง 4 วิ · พัก 20 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="90" y="570" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n112" value="💡 เหมือนท่าบน แต่หงายฝ่ามือขึ้น" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="570" width="380" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="e113" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="632" as="sourcePoint"/><mxPoint x="400" y="658" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n114" value="&lt;b&gt;7. External rotation นอนตะแคง (2 kg)&lt;/b&gt;&#10;[ยก]  2 × 12/ข้าง · จังหวะ 2-1-2 · พัก 20 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="90" y="658" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n115" value="💡 ศอกแนบเอว หมุนแขนขึ้นเพดาน หัวไหล่ห้ามยกตาม — ห้ามใช้น้ำหนักหนักกว่านี้" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="658" width="380" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="e116" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="720" as="sourcePoint"/><mxPoint x="400" y="746" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n117" value="&lt;b&gt;8. Dead bug&lt;/b&gt;&#10;[ยก]  3 × 8/ข้าง · จังหวะ ช้า · พัก 30 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="90" y="746" width="620" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="n118" value="💡 หลังล่างแนบพื้นตลอด ถ้าหลังโก่งขึ้นแปลว่ายืดไกลเกิน" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="734" y="746" width="380" height="62" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="Interval" name="Interval + โดสขั้นต่ำ">
+    <mxGraphModel dx="1100" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" background="#e7e4dc" math="0" shadow="0">
+      <root>
+        <mxCell id="p0"/>
+        <mxCell id="p1" parent="p0"/>
+        <mxCell id="t119" value="Interval 2 แบบ · ปั่นเบา · โดสขั้นต่ำ" style="text;html=1;fontSize=22;align=left;fontStyle=1;fontColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="70" y="30" width="900" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="t120" value="แบบ A กับ B สลับกันตามจำนวนครั้งที่ทำบ้าน B ไปแล้ว ไม่ได้ดูปฏิทิน" style="text;html=1;fontSize=12;align=left;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="70" y="62" width="1000" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="n121" value="&lt;b&gt;แบบ A · ขยายเครื่องยนต์&lt;/b&gt;  18 นาที · รอบคู่" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#1d4ed8;strokeColor=#14110d;fontColor=#ffffff;fontSize=13;verticalAlign=middle;spacingTop=0" vertex="1" parent="p1">
+          <mxGeometry x="70" y="110" width="470" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="n122" value="3 รอบ&#10;เร่ง 240 วิ → ผ่อน 180 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d;fontSize=12" vertex="1" parent="p1">
+          <mxGeometry x="70" y="154" width="470" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="n123" value="ปั่นหนักระดับพูดได้ทีละคำ (RPE 8) 4 นาที · ผ่อน 3 นาที · 3 รอบ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="70" y="234" width="470" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="n124" value="&lt;b&gt;แบบ B · จำลองแรลลี่&lt;/b&gt;  15 นาที · รอบคี่" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#1d4ed8;strokeColor=#14110d;fontColor=#ffffff;fontSize=13;verticalAlign=middle;spacingTop=0" vertex="1" parent="p1">
+          <mxGeometry x="590" y="110" width="470" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="n125" value="16 รอบ&#10;เร่ง 15 วิ → ผ่อน 45 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d;fontSize=12" vertex="1" parent="p1">
+          <mxGeometry x="590" y="154" width="470" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="n126" value="ล็อกความหนืดไว้ระดับเดียว เร่งด้วยรอบขาล้วน 15 วินาที · ผ่อน 45 วินาที · 16 รอบ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="590" y="234" width="470" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="n127" value="หมายเหตุ: ยืดจาก 10 เป็น 15 วิ เพราะเร่งด้วยขาต้องใช้เวลาสร้างแรงนานกว่าเพิ่มความหนืด" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#ffe9c7;strokeColor=#8c8678;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="590" y="320" width="470" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="t128" value="โดสขั้นต่ำ — 13 นาที" style="text;html=1;fontSize=16;align=left;fontStyle=1;fontColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="70" y="410" width="900" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="t129" value="กล้ามเนื้อทนหยุดหนึ่งสัปดาห์ได้ เอ็นไม่ทน — งานเอ็นห้ามขาด" style="text;html=1;fontSize=11;align=left;fontColor=#8c8678" vertex="1" parent="p1">
+          <mxGeometry x="70" y="436" width="1000" height="23" as="geometry"/>
+        </mxCell>
+        <mxCell id="n130" value="&lt;b&gt;1. Wall sit&lt;/b&gt;&#10;5 × 45 วิ · พัก 30 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#ffe9c7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="70" y="470" width="620" height="58" as="geometry"/>
+        </mxCell>
+        <mxCell id="e131" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="528" as="sourcePoint"/><mxPoint x="380" y="548" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n132" value="&lt;b&gt;2. Calf raise ขาเดียว&lt;/b&gt;&#10;2 × 10/ข้าง · จังหวะ 3-1-3 · พัก 30 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="70" y="548" width="620" height="58" as="geometry"/>
+        </mxCell>
+        <mxCell id="e133" style="html=1;strokeColor=#14110d;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="p1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="606" as="sourcePoint"/><mxPoint x="380" y="626" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n134" value="&lt;b&gt;3. ยาข้อศอก (2 kg)&lt;/b&gt;&#10;1 × 10/ข้าง · จังหวะ ลง 4 วิ · พัก 20 วิ" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#fafaf7;strokeColor=#14110d" vertex="1" parent="p1">
+          <mxGeometry x="70" y="626" width="620" height="58" as="geometry"/>
+        </mxCell>
+        <mxCell id="n135" value="&lt;b&gt;ปั่นเบา — 20 นาที&lt;/b&gt;&#10;&#10;RPE 3–4 — ถ้าพูดเป็นประโยคยาวไม่ได้ แปลว่าหนักเกินไปแล้ว ให้ผ่อนลง" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#c7e8d0;strokeColor=#14110d;fontSize=12" vertex="1" parent="p1">
+          <mxGeometry x="740" y="470" width="400" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="n136" value="เบาจนคุยโทรศัพท์ได้ — ไม่เพิ่มภาระการฟื้นตัว จึงไม่ขัดกับ ADR-0001 แต่สร้างฐานแอโรบิก" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fillColor=#f1efe6;strokeColor=#cfcabd;dashed=1;fontSize=10;fontColor=#4f4a40" vertex="1" parent="p1">
+          <mxGeometry x="740" y="585" width="400" height="76" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
